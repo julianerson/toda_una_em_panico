@@ -23,3 +23,8 @@ class calculo:#noçoes de calculo
           formulas = parse_expr(formulastr, transformations=transformations)#traduçao da formula para o sympy
           integral01 = sympy.integrate(formulas, varia)#aqui fazemos as integrais
           print(f'a sua formula tem a seguinte integral {integral01} + C')#vc realmente acha que iria esquecer do C? vc esta quase certo
+    def somatorio_simples():
+        repeti = int(input('quantas vezes vai ser repetido?'))
+        i = int(input('qual e o i'))
+        formula = input('diga a formula')
+        for o in range(repeti):
