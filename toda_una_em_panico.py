@@ -19,7 +19,7 @@ estamos em atualizaçoes desculpe''')
 while True:#aqui onde o user começa a ver
      AGUI = inquirer.select(
             message='vamos aos calculos',
-            choices=['sair','info','integracao indefinida', 'integraçao definida']
+            choices=['sair','info','integracao indefinida', 'integraçao definida','somatorio']
             ).execute()#menu principal
      if 'sair' in AGUI:#sai
           break
@@ -33,3 +33,6 @@ while True:#aqui onde o user começa a ver
      elif 'integraçao definida' in AGUI:
           calc.integraçoes_definidas()
           continue
+     elif 'somatorio' in AGUI:
+         calc.somatorio_simples()
+         continue
