@@ -34,6 +34,8 @@ class calculo:#noçoes de calculo
           integral01 = sympy.integrate(formulas, varia)#aqui fazemos as integrais
           print(f'a sua formula tem a seguinte integral {integral01} + C')#vc realmente acha que iria esquecer do C? vc esta quase certo
 
+calc = calculo()#aqui onde liga o objeto calculo
+
 while True:#aqui onde o user começa a ver
      AGUI = inquirer.select(
             message='vamos aos calculos',
@@ -45,9 +47,9 @@ while True:#aqui onde o user começa a ver
           informacoes()
           continue
      elif 'integracao indefinida' in AGUI:
-          calculo.integraçoes_indefinidas()
+          calc.integraçoes_indefinidas()
           print('otimo, temos mais contas otaro')
           continue
      elif 'integraçao definida' in AGUI:
-          calculo.integraçoes_definidas()
+          calc.integraçoes_definidas()
           continue
