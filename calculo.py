@@ -26,7 +26,7 @@ class calculo:#noçoes de calculo
      def somatorio_simples(self):
          repeti = int(input('quantas vezes vai ser repetido?'))
          i = int(input('qual e o i'))
-         formula = input('diga a formula')
+         formula = input('diga a formula').replace('?','**')
          formulasim = 0
          for o in range(repeti):
              formula2 = eval(formula)
