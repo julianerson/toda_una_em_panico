@@ -1,6 +1,8 @@
+import os
 from InquirerPy import inquirer
 from calculo import calculo
 from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application
+import ctypes
 #acima temos as bibliotecas do codigo
 
 transformations = standard_transformations + (implicit_multiplication_application,)#isso aqui faz variaveis como 2x serem possiveis
@@ -19,7 +21,7 @@ estamos em atualizaçoes desculpe''')
 while True:#aqui onde o user começa a ver
      AGUI = inquirer.select(
             message='vamos aos calculos',
-            choices=['sair','info','integracao indefinida', 'integraçao definida','somatorio']
+            choices=['sair','info','integracao indefinida', 'integraçao definida','calculadoraC']
             ).execute()#menu principal
      if 'sair' in AGUI:#sai
           break
@@ -33,6 +35,8 @@ while True:#aqui onde o user começa a ver
      elif 'integraçao definida' in AGUI:
           calc.integraçoes_definidas()
           continue
-     elif 'somatorio' in AGUI:
-         calc.somatorio_simples()
-         continue
+     elif 'calculadoraC' in AGUI:
+          oioi = os.path.abspath("calculadora.so")
+          teste = ctypes.CDLL(oioi)
+          teste.main()
+          continue
