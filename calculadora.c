@@ -6,19 +6,19 @@
 
 int somatorio(){//funçao somatorio
     double i = 0;//diz o i
-    printf("diga o i\n");
+    printf("\ndiga o i\n");
     printf(">");
     scanf(" %lf", &i);
     getchar(); // consome o '\n' que sobrou
 
     int repeti = 0;
-    printf("diga quanto isso vai repetir\n");
+    printf("\ndiga quanto isso vai repetir\n");
     scanf(" %d", &repeti);
     printf(">");
     getchar();
 
     char formula[100];
-    printf("diga a formula pfv\n");
+    printf("\ndiga a formula pfv\n");
     printf(">");
     fgets(formula, sizeof(formula), stdin);//pega a formula
     formula[strcspn(formula, "\n")] = 0; // ve o indice de onde esta o /n que o fget deixa e remove o '\n'
@@ -40,7 +40,7 @@ int somatorio(){//funçao somatorio
             printf("Erro na posição %d\n", err);//se der erro na sua formula
         }
     }
-    printf("resultado e: %f\n",resultado);//ta ai
+    printf("\nresultado e: %f\n",resultado);//ta ai
     return 0;
 }
 
