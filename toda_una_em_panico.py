@@ -3,6 +3,8 @@ from InquirerPy import inquirer
 from calculo import calculo
 from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application
 import ctypes
+from time import sleep as mimir
+
 #acima temos as bibliotecas do codigo
 
 transformations = standard_transformations + (implicit_multiplication_application,)#isso aqui faz variaveis como 2x serem possiveis
@@ -39,5 +41,15 @@ while True:#aqui onde o user começa a ver
           oioi = os.path.abspath("calculadora.so")
           teste = ctypes.CDLL(oioi)
           print("iniciando")
+          mimir(3)
+          print("""dica:
+                calculos aqui sao diferentes
+                para potencia= pow(numero,expoente)
+                raiz quadrada=sqrt(x)
+                para cosseno = cos(x)
+                para tangente = tan(x)
+                log natural = log(x)
+                log de 10 = log10(x)""")
+          mimir(5)
           teste.main()
           continue
