@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "tinyexpr.h"
-#define pi 22/7
+#define p 22/7
 
 
 int somatorio(){//funçao somatorio
