@@ -38,5 +38,6 @@ while True:#aqui onde o user começa a ver
      elif 'calculadoraC' in AGUI:
           oioi = os.path.abspath("calculadora.so")
           teste = ctypes.CDLL(oioi)
+          print("iniciando")
           teste.main()
           continue
