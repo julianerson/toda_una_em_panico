@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 #include "tinyexpr.h"
-#define p 22/7//tenho que tentar fazer o pi aplicavel no calculo
 
 
 int somatorio(){//funçao somatorio
+    double p = 3.141593;//tenho que tentar fazer o pi aplicavel no calculo
     double i = 0;//diz o i
     printf("\ndiga o i\n");
     printf(">");
@@ -27,10 +27,10 @@ int somatorio(){//funçao somatorio
 
     for (int reto = 0; reto < repeti; reto++){//aqui e aonde as coisas começam
         
-        te_variable vars[] = { {"i", &i} };//usa a biblioteca tinyexpr para saber quais sao as variaveis da formula, no caso e limitado apenas ao i
+        te_variable vars[] = { {"i", &i}, {"p", &p} };//usa a biblioteca tinyexpr para saber quais sao as variaveis da formula, no caso e limitado apenas ao i
 
         int err;
-        te_expr *expr = te_compile(formula, vars, 1, &err);//aqui aonde ele le a formula,temos: formula, variaveis, quantas variaveis, e os erros na formula
+        te_expr *expr = te_compile(formula, vars, 2, &err);//aqui aonde ele le a formula,temos: formula, variaveis, quantas variaveis, e os erros na formula
 
         if (expr) {//se a formula esta escrito corretamente
             resultado += te_eval(expr);//valida a expreçao(calcula) da linha 28, e soma ao resutado
