@@ -49,7 +49,8 @@ while True:#aqui onde o user começa a ver
                 para cosseno = cos(x)
                 para tangente = tan(x)
                 log natural = log(x)
-                log de 10 = log10(x)""")
+                log de 10 = log10(x)
+                pi = pi""")
           mimir(5)
           teste.main()
           continue
