@@ -4,7 +4,7 @@
 
 
 int somatorio(){//funçao somatorio
-    double p = 3.141593;//fds #define
+    const double p = 3.141593;//fds #define
     double i = 0;//diz o i
     printf("\ndiga o i\n");
     printf(">");
