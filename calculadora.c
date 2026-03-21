@@ -7,19 +7,19 @@ int somatorio(){//funçao somatorio
     const double p = 3.141593;//fds #define
     double i = 0;//diz o i
     printf("\ndiga o i\n");
-    printf(">");
+    printf(">\0");
     scanf(" %lf", &i);
     getchar(); // consome o '\n' que sobrou
 
     int repeti = 0;
     printf("\ndiga quanto isso vai repetir\n");
     scanf(" %d", &repeti);
-    printf(">");
+    printf(">\0");
     getchar();
 
     char formula[100];
     printf("\ndiga a formula pfv\n");
-    printf(">");
+    printf(">\0");
     fgets(formula, sizeof(formula), stdin);//pega a formula
     formula[strcspn(formula, "\n")] = 0; // ve o indice de onde esta o /n que o fget deixa e remove o '\n'
 
