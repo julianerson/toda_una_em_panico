@@ -18,6 +18,13 @@
     #define OS_NAME "Desconhecido"
 #endif
 
+void limpar_tela(){
+    if(strcmp(OS_NAME,"Windows")==0){//comando de limpeza
+        system("cls");
+    }else if(strcmp(OS_NAME,"unixlike")==0){
+        system("clear");
+    }
+}
 
 int soma_matriz(){//isso aqui sao as somas de matrizes
     int l;//linhas
@@ -34,29 +41,16 @@ int soma_matriz(){//isso aqui sao as somas de matrizes
         for(int i = 0; i < c; i++){//isso muda as colunas, e apos ir em todas as colunas possiveis muda de linha
             printf("matriz1 [%d][%d]\n",j,i);//j=linha atual e i=coluna atual
             scanf(" %d",&matriz1[j][i]);
-            if(strcmp(OS_NAME,"Windows")==0){//o if e else if limpam a tela
-                system("cls");
-            }else if(strcmp(OS_NAME,"unixlike")==0){
-                system("clear");
-            }
+            limpar_tela();
         }
     }
-    if(strcmp(OS_NAME,"Windows")==0){//comando de limpeza
-        system("cls");
-    }else if(strcmp(OS_NAME,"unixlike")==0){
-        system("clear");
-    }
-
+    limpar_tela();
     printf("\nvamos a matriz2\n");
     for(int j = 0; j<l;j++){//cra a matriz 2
         for(int i = 0; i < c; i++){
             printf("matriz2 [%d][%d]\n",j,i);
             scanf(" %d",&matriz2[j][i]);//coloca os dados
-            if(strcmp(OS_NAME,"Windows")==0){//o if e else if limpam a tela
-                system("cls");
-            }else if(strcmp(OS_NAME,"unixlike")==0){
-                system("clear");
-            }
+            limpar_tela();
         }
     }
     printf("\nmatriz1=\n");//printa a matriz 1
@@ -96,11 +90,7 @@ int somatorio(){//funçao somatorio
     scanf(" %lf", &i);
     getchar(); // consome o '\n' que sobrou
 
-    if(strcmp(OS_NAME,"Windows")==0){//o if e else if limpam a tela
-        system("cls");
-    }else if(strcmp(OS_NAME,"unixlike")==0){
-        system("clear");
-    }
+    limpar_tela();
 
     int repeti = 0;
     printf("\ndiga quanto isso vai repetir\n");
@@ -108,17 +98,13 @@ int somatorio(){//funçao somatorio
     printf(">");
     getchar();
 
+    limpar_tela();
+
     char formula[100];
     printf("\ndiga a formula pfv\n");
     printf(">");
     fgets(formula, sizeof(formula), stdin);//pega a formula
     formula[strcspn(formula, "\n")] = 0; // ve o indice de onde esta o /n que o fget deixa e remove o '\n'
-
-    if(strcmp(OS_NAME,"Windows")==0){//o if e else if limpam a tela
-        system("cls");
-    }else if(strcmp(OS_NAME,"unixlike")==0){
-        system("clear");
-    }
 
     double resultado = 0;//sera util, aquieta o rabo
 
