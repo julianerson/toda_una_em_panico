@@ -46,13 +46,7 @@ int soma_matriz(){//isso aqui sao as somas de matrizes
     }else if(strcmp(OS_NAME,"unixlike")==0){
         system("clear");
     }
-    printf("\nmatriz1=\n");//printa a matriz 1
-    for(int j = 0; j<l;j++){
-        for(int i = 0; i < c; i++){
-            printf("(%d)\0",matriz1[j][i]);
-        }
-        printf("\n");
-    }
+
     printf("\nvamos a matriz2\n");
     for(int j = 0; j<l;j++){//cra a matriz 2
         for(int i = 0; i < c; i++){
@@ -64,6 +58,13 @@ int soma_matriz(){//isso aqui sao as somas de matrizes
                 system("clear");
             }
         }
+    }
+    printf("\nmatriz1=\n");//printa a matriz 1
+    for(int j = 0; j<l;j++){
+        for(int i = 0; i < c; i++){
+            printf("(%d)\0",matriz1[j][i]);
+        }
+        printf("\n");
     }
     printf("\nmatriz2=\n");
     for(int j = 0; j<c;j++){
