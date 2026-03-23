@@ -33,7 +33,7 @@ int soma_matriz(){//isso aqui sao as somas de matrizes
     int c;//colunas
     char oito[10];
     printf("soma ou subtracao?\n");
-    scanf(" %d",&oito);
+    scanf(" %s",&oito);
     printf("diga quantas linhas tem as matrizes\n");
     scanf(" %d",&l);
     printf("diga quantas colunas tem as matrizes\n");
