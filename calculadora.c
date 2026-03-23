@@ -18,6 +18,8 @@
     #define OS_NAME "Desconhecido"
 #endif
 
+const double p = 3.141593;//pi e constante em TODO O CODIGO, e e uma variavel externa
+
 void limpar_tela(){
     if(strcmp(OS_NAME,"Windows")==0){//comando de limpeza
         system("cls");
@@ -29,6 +31,9 @@ void limpar_tela(){
 int soma_matriz(){//isso aqui sao as somas de matrizes
     int l;//linhas
     int c;//colunas
+    char oito[10];
+    printf("soma ou subtracao?\n");
+    scanf(" %d",&oito);
     printf("diga quantas linhas tem as matrizes\n");
     scanf(" %d",&l);
     printf("diga quantas colunas tem as matrizes\n");
@@ -67,10 +72,14 @@ int soma_matriz(){//isso aqui sao as somas de matrizes
         }
         printf("\n");
     }
-    for(int j = 0; j<l;j++){
+    for(int j = 0; j<l;j++){//calcula as matrizes e faz a matriz3(resultado)
         for(int i = 0; i < c; i++){
             matriz3[j][i] = 0;
-            matriz3[j][i] = matriz1[j][i] + matriz2[j][i];
+            if(strcmp(oito,"soma")==0){//verifica se e soma ou subtraçao
+                matriz3[j][i] = matriz1[j][i] + matriz2[j][i];
+            }else if(strcmp(oito,"subtracao")==0){
+                matriz3[j][i] = matriz1[j][i] - matriz2[j][i];
+            }
         }
     }
     printf("\nmatriz3=\n");
@@ -83,8 +92,13 @@ int soma_matriz(){//isso aqui sao as somas de matrizes
 }
 
 int somatorio(){//funçao somatorio
-    const double p = 3.141593;//fds #define
+    char comando[20];
     double i = 0;//diz o i
+
+    printf("você quer somatorio,produtorio\n");
+    scanf(" %s",&comando);
+    limpar_tela();
+
     printf("\ndiga o i\n");
     printf(">");
     scanf(" %lf", &i);
@@ -106,7 +120,12 @@ int somatorio(){//funçao somatorio
     fgets(formula, sizeof(formula), stdin);//pega a formula
     formula[strcspn(formula, "\n")] = 0; // ve o indice de onde esta o /n que o fget deixa e remove o '\n'
 
-    double resultado = 0;//sera util, aquieta o rabo
+    double resultado;//sera util, aquieta o rabo
+    if(strcmp(comando,"somatorio")==0){
+       resultado = 0;//ve se e somatorio
+    }else if(strcmp(comando,"produtorio")==0){
+       resultado = 1;//ve se a conta e produtorio
+    }
 
     for (int reto = 0; reto < repeti; reto++){//aqui e aonde as coisas começam
         
@@ -116,7 +135,11 @@ int somatorio(){//funçao somatorio
         te_expr *expr = te_compile(formula, vars, 2, &err);//aqui aonde ele le a formula,temos: formula, variaveis, quantas variaveis, e os erros na formula
 
         if (expr) {//se a formula esta escrito corretamente
-            resultado += te_eval(expr);//valida a expreçao(calcula) da linha 28, e soma ao resutado
+            if(strcmp(comando,"somatorio")==0){
+               resultado += te_eval(expr);//valida a expreçao(calcula) da linha 28, e soma ao resutado
+            }else if(strcmp(comando,"produtorio")==0){
+               resultado =resultado * te_eval(expr);//valida a expreçao(calcula) da linha 28, e multiplica ao resutado
+            }
             te_free(expr);//zera a expreçao para poder refazer as contas
             i++;//reintera o i
         } else {
@@ -130,12 +153,12 @@ int somatorio(){//funçao somatorio
 int main() {//a GUI do codigo, sim ela e uma bosta... ainda...
     char escolha[20];//escolha
     printf("voce quer algo mais bruto ne? bem temos a soluçao, dia o que você quer?\n");
-    printf(" temos: somatorio,soma_matrizes\n");//escolhas
+    printf(" temos: loop,matrizes\n");//escolhas
     printf(">");
     scanf(" %19s", escolha);
-    if(strcmp(escolha,"somatorio")==0){
+    if(strcmp(escolha,"loop")==0){
         somatorio();
-    }else if(strcmp(escolha,"soma_matrizes")==0){
+    }else if(strcmp(escolha,"matrizes")==0){
         soma_matriz();
     }else{
         printf("nao sei ler isso, nao sou uma IA retardado\n");//mensagem carinhosa para o user
