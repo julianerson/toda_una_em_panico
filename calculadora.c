@@ -77,7 +77,7 @@ void determinantes(){
         for(i=0;i<l;i++){
             printf("(%d)",matriz[j][i]);
         }
-        print("\n");
+        printf("\n");
     }
     resposta = solucaoP - solucaoS;//calculo das duas diagonais
     printf("\ne sua determinante e %d\n",resposta);
