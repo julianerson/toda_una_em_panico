@@ -36,9 +36,18 @@ void determinantes(){
     linhaS = 1;
     printf("diga o tamanho");//da o tamanho da matriz, não e muito elegante mas e o que temos
     scanf(" %d",&l);
-    int matriz[l][l];//matrizes
-    int matrizp[l][l];//para que o calculo seja feito, vamos transformar as diagonais
-    int matrizs[l][l];//diagonal_principal = matrizp ; diagonal_secundaria = matrizs
+    int **matriz = (int**)malloc(l*sizeof(int*));
+    for(i=0;i<l;i++){//o int de cima e esse de baixo criam uma matriz mais elegante
+        matriz[i]=(int*)malloc(l*sizeof(l));
+    }
+    int **matrizp = (int**)malloc(l*sizeof(int*));
+    for(i=0;i<l;i++){
+        matrizp[i]=(int*)malloc(l*sizeof(l));
+    }
+    int **matrizs = (int**)malloc(l*sizeof(int*));
+    for(i=0;i<l;i++){
+        matrizs[i]=(int*)malloc(l*sizeof(l));
+    }
     for(j = 0; j<l;j++){//cria a matriz 1
         for(i = 0; i < l; i++){//isso muda as colunas, e apos ir em todas as colunas possiveis muda de linha
             printf("matriz1 [%d][%d]\n",j,i);//j=linha atual e i=coluna atual
@@ -72,13 +81,16 @@ void determinantes(){
         solucaoS += linhaS;
         linhaS = 1;
     }
-    printf("\n am matriz e:\n");
+    printf("\na matriz e:\n");
     for(j = 0; j<l;j++){//matriz
         for(i=0;i<l;i++){
             printf("(%d)",matriz[j][i]);
         }
         printf("\n");
     }
+    free(matriz);//libera os dados das matrizes, nao parece muto util, mas e um bom habito
+    free(matrizp);
+    free(matrizs);
     resposta = solucaoP - solucaoS;//calculo das duas diagonais
     printf("\ne sua determinante e %d\n",resposta);
 }
