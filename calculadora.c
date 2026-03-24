@@ -57,13 +57,13 @@ void determinantes(){
     }
     for(j = 0; j<l;j++){//valor para a matrizp
         for(i = 0; i < l; i++){
-            col = (j+i)%3;//gambiarra matematica que da coordenadas para que a criaçao dessas matrizes seja possivel
+            col = (j+i)%l;//gambiarra matematica que da coordenadas para que a criaçao dessas matrizes seja possivel
             matrizp[i][j]=matriz[j][col];
         }
     }
     for(j = 0; j<l;j++){
         for(i = 0; i < l; i++){//valor da matrizs
-            col = (l-1) - ((j+i)%3);//gambiarra 2x
+            col = (l-1) - ((j+i)%l);//gambiarra 2x
             matrizs[i][j]=matriz[j][col];
         }
     }
