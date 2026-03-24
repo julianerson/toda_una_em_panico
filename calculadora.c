@@ -28,6 +28,54 @@ void limpar_tela(){
     }
 }
 
+void determinantes(){
+    int l,i,j,col,resposta,solucaoP,linhaP,solucaoS,linhaS;
+    solucaoP = 0;
+    solucaoS = 0;
+    linhaP = 1;
+    linhaS = 1;
+    printf("diga o tamanho");
+    scanf(" %d",&l);
+    int matriz[l][l];
+    int matrizp[l][l];
+    int matrizs[l][l];
+    for(j = 0; j<l;j++){//cria a matriz 1
+        for(i = 0; i < l; i++){//isso muda as colunas, e apos ir em todas as colunas possiveis muda de linha
+            printf("matriz1 [%d][%d]\n",j,i);//j=linha atual e i=coluna atual
+            scanf(" %d",&matriz[j][i]);
+            limpar_tela();
+        }
+    }
+    for(j = 0; j<l;j++){
+        for(i = 0; i < l; i++){
+            col = (j+i)%3;
+            matrizp[i][j]=matriz[j][col];
+        }
+    }
+    for(j = 0; j<l;j++){
+        for(i = 0; i < l; i++){
+            col = (l-1) - ((j+i)%3);
+            matrizs[i][j]=matriz[j][col];
+        }
+    }
+    for(j = 0; j<l;j++){
+        for(i = 0; i < l; i++){
+            linhaP = linhaP * matrizp[j][i];
+        };
+        solucaoP += linhaP;
+        linhaP = 1;
+    }
+    for(j = 0; j<l;j++){
+        for(i = 0; i < l; i++){
+            linhaS = linhaS * matrizs[j][i];
+        };
+        solucaoS += linhaS;
+        linhaS = 1;
+    }
+    resposta = solucaoP - solucaoS;
+    printf("\na determinante e %d\n",resposta);
+}
+
 int soma_matriz(){//isso aqui sao as somas de matrizes
     int l;//linhas
     int c;//colunas
@@ -153,13 +201,15 @@ int somatorio(){//funçao somatorio
 int main() {//a GUI do codigo, sim ela e uma bosta... ainda...
     char escolha[20];//escolha
     printf("voce quer algo mais bruto ne? bem temos a soluçao, dia o que você quer?\n");
-    printf(" temos: loop,matrizes\n");//escolhas
+    printf(" temos: loop,matrizes,determinantes\n");//escolhas
     printf(">");
     scanf(" %19s", escolha);
     if(strcmp(escolha,"loop")==0){
         somatorio();
     }else if(strcmp(escolha,"matrizes")==0){
         soma_matriz();
+    }else if(strcmp(escolha,"determinantes")==0){
+        determinantes();
     }else{
         printf("nao sei ler isso, nao sou uma IA retardado\n");//mensagem carinhosa para o user
     }
