@@ -72,8 +72,15 @@ void determinantes(){
         solucaoS += linhaS;
         linhaS = 1;
     }
+    printf("\n am matriz e:\n");
+    for(j = 0; j<l;j++){//matriz
+        for(i=0;i<l;i++){
+            printf("(%d)",matriz[j][i]);
+        }
+        print("\n");
+    }
     resposta = solucaoP - solucaoS;//calculo das duas diagonais
-    printf("\na determinante e %d\n",resposta);
+    printf("\ne sua determinante e %d\n",resposta);
 }
 
 int soma_matriz(){//isso aqui sao as somas de matrizes
