@@ -29,16 +29,16 @@ void limpar_tela(){
 }
 
 void determinantes(){
-    int l,i,j,col,resposta,solucaoP,linhaP,solucaoS,linhaS;
-    solucaoP = 0;
+    int l,i,j,col,resposta,solucaoP,linhaP,solucaoS,linhaS;//variaveis nescessarias para a determinantes
+    solucaoP = 0;//aqui nos damos aos valores as variaveis para que nao seja alterado o calculo
     solucaoS = 0;
     linhaP = 1;
     linhaS = 1;
-    printf("diga o tamanho");
+    printf("diga o tamanho");//da o tamanho da matriz, não e muito elegante mas e o que temos
     scanf(" %d",&l);
-    int matriz[l][l];
-    int matrizp[l][l];
-    int matrizs[l][l];
+    int matriz[l][l];//matrizes
+    int matrizp[l][l];//para que o calculo seja feito, vamos transformar as diagonais
+    int matrizs[l][l];//diagonal_principal = matrizp ; diagonal_secundaria = matrizs
     for(j = 0; j<l;j++){//cria a matriz 1
         for(i = 0; i < l; i++){//isso muda as colunas, e apos ir em todas as colunas possiveis muda de linha
             printf("matriz1 [%d][%d]\n",j,i);//j=linha atual e i=coluna atual
@@ -46,33 +46,33 @@ void determinantes(){
             limpar_tela();
         }
     }
-    for(j = 0; j<l;j++){
+    for(j = 0; j<l;j++){//valor para a matrizp
         for(i = 0; i < l; i++){
-            col = (j+i)%3;
+            col = (j+i)%3;//gambiarra matematica que da coordenadas para que a criaçao dessas matrizes seja possivel
             matrizp[i][j]=matriz[j][col];
         }
     }
     for(j = 0; j<l;j++){
-        for(i = 0; i < l; i++){
-            col = (l-1) - ((j+i)%3);
+        for(i = 0; i < l; i++){//valor da matrizs
+            col = (l-1) - ((j+i)%3);//gambiarra 2x
             matrizs[i][j]=matriz[j][col];
         }
     }
-    for(j = 0; j<l;j++){
+    for(j = 0; j<l;j++){//aqui a matrizp e calculada para que funcione igual o calculo da diagonal principal
         for(i = 0; i < l; i++){
             linhaP = linhaP * matrizp[j][i];
         };
         solucaoP += linhaP;
         linhaP = 1;
     }
-    for(j = 0; j<l;j++){
+    for(j = 0; j<l;j++){//mesmo que o loop acima
         for(i = 0; i < l; i++){
             linhaS = linhaS * matrizs[j][i];
         };
         solucaoS += linhaS;
         linhaS = 1;
     }
-    resposta = solucaoP - solucaoS;
+    resposta = solucaoP - solucaoS;//calculo das duas diagonais
     printf("\na determinante e %d\n",resposta);
 }
 
