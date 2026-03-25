@@ -3,6 +3,7 @@
 #include <string.h>
 #include "tinyexpr.h"
 #include <stdlib.h>
+#include <time.h>
 
 // Verifica se é Windows (32 ou 64 bits)
 #if defined(_WIN32) || defined(_WIN64)
@@ -25,6 +26,71 @@ void limpar_tela(){
         system("cls");
     }else if(strcmp(OS_NAME,"unixlike")==0){
         system("clear");
+    }
+}
+
+void matrizes_multiplicadas(){
+    int l1,c1,l2,c2,i,j,coluna,linha;//variaveis nescessarias para multiplicaçao
+    printf("diga quantas linas da 1ºmatriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
+    scanf(" %d",&l1);
+    printf("diga quantas colunas na 1º matriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
+    scanf(" %d",&c1);
+    printf("\nagora a 2 matriz\n");
+    sleep(2);
+    limpar_tela();
+    printf("diga quantas linhas ha na 2º matriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
+    scanf(" %d",&l2);
+    printf("diga quantas linhas ha na 2 matriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
+    scanf(" %d",&c2);
+    int *linhas=(int*)malloc(l1*sizeof(int));//cria o vetor onde tera as respostas para as linhas
+    int *colunas=(int*)malloc(c2*sizeof(int));//cria o vetor onde tera as multipicaçao das colunas
+    int **matriz1 = (int**)malloc(c1*sizeof(int*));
+    for(i=0;i<c1;i++){//o int de cima e esse de baixo criam uma matriz mais elegante
+        matriz1[i]=(int*)malloc(l1*sizeof(int));
+    }
+    int **matriz2 = (int**)malloc(c2*sizeof(int*));
+    for(i=0;i<c2;i++){
+        matriz2[i]=(int*)malloc(l2*sizeof(int));
+    }
+    int **matriz3 = (int**)malloc(c2*sizeof(int*));
+    for(i=0;i<c2;i++){
+        matriz3[i]=(int*)malloc(l1*sizeof(int));
+    }
+    for(j = 0; j<l1;j++){//da os valores a matriz 1
+        for(i = 0; i < c1; i++){//isso muda as colunas, e apos ir em todas as colunas possiveis muda de linha
+            printf("matriz1 [%d][%d]\n",j,i);//j=linha atual e i=coluna atual
+            scanf(" %d",&matriz1[j][i]);
+            limpar_tela();
+        }
+    }for(j = 0; j<l2;j++){//da os valores a matriz 2
+        for(i = 0; i < c2; i++){//isso muda as colunas, e apos ir em todas as colunas possiveis muda de linha
+            printf("matriz2 [%d][%d]\n",j,i);//j=linha atual e i=coluna atual
+            scanf(" %d",&matriz2[j][i]);
+            limpar_tela();
+        }
+    }for(j = 0; j<l1;j++){//da os valores ao vetor de linhas
+        linhas[j] = 1;
+        for(i = 0; i < c1; i++){
+            linhas[j] = linhas[j]*matriz1[j][i];
+        }
+    }for(j = 0; j<c2;j++){//da os valores ao vetor de colunas
+        colunas[j] = 1;
+        for(i = 0; i < l2; i++){
+            colunas[j]=colunas[j]*matriz2[j][i];
+        }
+    }
+    for(i=0;i<l1;i++){
+        for(j=0;j<c2;j++){
+            matriz3[i][j]=linhas[i]+colunas[j];
+            printf("%d+%d=%d\n",linhas[i],colunas[i],matriz3[i][j]);
+        }
+    }
+    printf("\no resuktado e:\n");
+    for(int j = 0; j<c2;j++){
+        for(int i = 0; i < l1; i++){
+            printf("(%d)\0",matriz3[j][i]);
+        }
+        printf("\n");
     }
 }
 
@@ -218,9 +284,9 @@ int somatorio(){//funçao somatorio
 }
 
 int main() {//a GUI do codigo, sim ela e uma bosta... ainda...
-    char escolha[20];//escolha
+    char escolha[40];//escolha
     printf("voce quer algo mais bruto ne? bem temos a soluçao, dia o que você quer?\n");
-    printf(" temos: loop,matrizes,determinantes\n");//escolhas
+    printf(" temos: loop,matrizes,determinantes,matriz-multiplicada\n");//escolhas
     printf(">");
     scanf(" %19s", escolha);
     if(strcmp(escolha,"loop")==0){
@@ -229,6 +295,8 @@ int main() {//a GUI do codigo, sim ela e uma bosta... ainda...
         soma_matriz();
     }else if(strcmp(escolha,"determinantes")==0){
         determinantes();
+    }else if(strcmp(escolha,"matriz-multiplicada")==0){
+        matrizes_multiplicadas();
     }else{
         printf("nao sei ler isso, nao sou uma IA retardado\n");//mensagem carinhosa para o user
     }
