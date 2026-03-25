@@ -2,6 +2,9 @@
 
 toda una esta em panico, entao aqui a soluçao, obvio que nao vcs tao fudidos, mas isso pode ajudar, no momento temos integrais simples, determinantes, somatorio e produtorio
 
+# bugs
+1. a multiplicaçao de matrizes buga se as matrizes mumtiplicadas nao tiverem o mesmo tamanho
+
 # manual do user
 
 1. execute o instalador.py, seja com o cmd seja no vscode
