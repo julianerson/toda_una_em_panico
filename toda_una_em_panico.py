@@ -38,6 +38,11 @@ while True:#aqui onde o user começa a ver
           calc.integraçoes_definidas()
           continue
      elif 'calculadoraC' in AGUI:
+          mom = inquirer.select(
+               message='o que vc quer?',
+               choices=["loop","matrizes","determinantes","matriz-multiplicada"]
+               ).execute()#menu principal
+          print(mom)
           oioi = os.path.abspath("calculadora.so")
           teste = ctypes.CDLL(oioi)
           print("iniciando")
@@ -52,5 +57,20 @@ while True:#aqui onde o user começa a ver
                 log de 10 = log10(x)
                 pi = p""")
           mimir(5)
-          teste.main()
+          if "loop" in mom:
+               print("iniciando...")
+               mimir(2)
+               teste.somatorio()
+          elif "matrizes" in mom:
+               print("iniciando...")
+               mimir(2)
+               teste.soma_matriz()
+          elif "determinantes" in mom:
+               print("iniciando...")
+               mimir(2)
+               teste.determinantes()
+          elif "matriz-multiplicada" in mom:
+               print("iniciando...")
+               mimir(2)
+               teste.matrizes_multiplicadas()
           continue

@@ -30,6 +30,7 @@ void limpar_tela(){
 }
 
 void matrizes_multiplicadas(){
+    limpar_tela();
     int l1,c1,l2,c2,i,j,coluna,linha;//variaveis nescessarias para multiplicaçao
     printf("diga quantas linas da 1ºmatriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
     scanf(" %d",&l1);
@@ -95,6 +96,7 @@ void matrizes_multiplicadas(){
 }
 
 void determinantes(){
+    limpar_tela();
     int l,i,j,col,resposta,solucaoP,linhaP,solucaoS,linhaS;//variaveis nescessarias para a determinantes
     solucaoP = 0;//aqui nos damos aos valores as variaveis para que nao seja alterado o calculo
     solucaoS = 0;
@@ -162,6 +164,7 @@ void determinantes(){
 }
 
 int soma_matriz(){//isso aqui sao as somas de matrizes
+    limpar_tela();
     int l;//linhas
     int c;//colunas
     char oito[10];
@@ -225,6 +228,7 @@ int soma_matriz(){//isso aqui sao as somas de matrizes
 }
 
 int somatorio(){//funçao somatorio
+    limpar_tela();
     char comando[20];
     double i = 0;//diz o i
 
@@ -281,23 +285,4 @@ int somatorio(){//funçao somatorio
     }
     printf("\nresultado e: %f\n",resultado);//ta ai
     return 0;
-}
-
-int main() {//a GUI do codigo, sim ela e uma bosta... ainda...
-    char escolha[40];//escolha
-    printf("voce quer algo mais bruto ne? bem temos a soluçao, dia o que você quer?\n");
-    printf(" temos: loop,matrizes,determinantes,matriz-multiplicada\n");//escolhas
-    printf(">");
-    scanf(" %19s", escolha);
-    if(strcmp(escolha,"loop")==0){
-        somatorio();
-    }else if(strcmp(escolha,"matrizes")==0){
-        soma_matriz();
-    }else if(strcmp(escolha,"determinantes")==0){
-        determinantes();
-    }else if(strcmp(escolha,"matriz-multiplicada")==0){
-        matrizes_multiplicadas();
-    }else{
-        printf("nao sei ler isso, nao sou uma IA retardado\n");//mensagem carinhosa para o user
-    }
 }
