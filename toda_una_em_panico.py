@@ -38,14 +38,17 @@ while True:#aqui onde o user começa a ver
           calc.integraçoes_definidas()
           continue
      elif 'calculadoraC' in AGUI:
-          mom = inquirer.select(
+          mom = inquirer.select(#escolhe o comando para c
                message='o que vc quer?',
                choices=["loop","matrizes","determinantes","matriz-multiplicada"]
                ).execute()#menu principal
-          print(mom)
-          oioi = os.path.abspath("calculadora.so")
+          if os.name == "posix":          
+               oioi = os.path.abspath("calculadora.so")
+          if os.name == "nt":          
+               oioi = os.path.abspath("calculadora.dll")
           teste = ctypes.CDLL(oioi)
           print("iniciando")
+          print("/n"*1000)
           mimir(3)
           print("""dica:
                 calculos aqui sao diferentes
