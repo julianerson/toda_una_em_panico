@@ -1,7 +1,7 @@
 //mensagem para o programador, LEIA CADA COMENTARIO, eles são o unico documentario aqui
 #include <stdio.h>
 #include <string.h>
-#include "tinyexpr.h"
+#include "tinyexpr.h"//importa a biblioteca responsavel pela tradução de formula, possivelmente sera util em utilizções futuras
 #include <stdlib.h>
 #include <time.h>
 
@@ -16,13 +16,13 @@
     #include <unistd.h>
 
 #else//caso nao soubermos o os
-    #define OS_NAME "Desconhecido"
+    #define OS_NAME "Desconhecido"//"e a galerinha do mac" foda-se eles, quase ninguem deles programa, eu espero
 #endif
 
 const double p = 3.141593;//pi e constante em TODO O CODIGO, e e uma variavel externa
 
-void limpar_tela(){
-    if(strcmp(OS_NAME,"Windows")==0){//comando de limpeza
+void limpar_tela(){//nome do comando
+    if(strcmp(OS_NAME,"Windows")==0){//comando de limpeza, tanto para windows quanto mac
         system("cls");
     }else if(strcmp(OS_NAME,"unixlike")==0){
         system("clear");
@@ -34,23 +34,22 @@ void matrizes_multiplicadas(){
     int l1,c1,l2,c2,i,j,coluna,linha;//variaveis nescessarias para multiplicaçao
     printf("diga quantas linas da 1ºmatriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
     scanf(" %d",&l1);
-    printf("diga quantas colunas na 1º matriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
-    scanf(" %d",&c1);
     printf("\nagora a 2 matriz\n");
     sleep(2);
     limpar_tela();
     printf("diga quantas linhas ha na 2º matriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
-    scanf(" %d",&l2);
-    printf("diga quantas linhas ha na 2 matriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
     scanf(" %d",&c2);
+    printf("diga quantas linhas da 2 matriz, e as colunas da 1\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
+    scanf(" %d",&l2);
+    c1 = l2;
     int *linhas=(int*)malloc(l1*sizeof(int));//cria o vetor onde tera as respostas para as linhas
     int *colunas=(int*)malloc(c2*sizeof(int));//cria o vetor onde tera as multipicaçao das colunas
     int **matriz1 = (int**)malloc(c1*sizeof(int*));
     for(i=0;i<c1;i++){//o int de cima e esse de baixo criam uma matriz mais elegante
         matriz1[i]=(int*)malloc(l1*sizeof(int));
     }
-    int **matriz2 = (int**)malloc(c2*sizeof(int*));
-    for(i=0;i<c2;i++){
+    int **matriz2 = (int**)malloc(c2*sizeof(int*));//todos com esse int **matriz blablabla, são criações mais elegantes de matrizes prezando pela eficiencia do codigo, e sim e dificil mesmo
+    for(i=0;i<c2;i++){//continuaçao do comentario a cima: todos que lerem essas partes vão se foder mesmo, desculpe programador, além de mim
         matriz2[i]=(int*)malloc(l2*sizeof(int));
     }
     int **matriz3 = (int**)malloc(c2*sizeof(int*));
@@ -165,6 +164,7 @@ void determinantes(){
 
 int soma_matriz(){//isso aqui sao as somas de matrizes
     limpar_tela();
+    int i;
     int l;//linhas
     int c;//colunas
     char oito[10];
@@ -175,9 +175,18 @@ int soma_matriz(){//isso aqui sao as somas de matrizes
     printf("diga quantas colunas tem as matrizes\n");
     scanf(" %d",&c);
     printf("diga agora sobre a primeira matriz\n");
-    int matriz1[l][c];
-    int matriz2[l][c];
-    int matriz3[l][c];//resultado da somas das matrizes 1 e 2
+    int **matriz1 = (int**)malloc(c*sizeof(int*));
+    for(i=0;i<c;i++){//o int de cima e esse de baixo criam uma matriz mais elegante
+        matriz1[i]=(int*)malloc(l*sizeof(int));
+    }
+    int **matriz2 = (int**)malloc(c*sizeof(int*));//todos com esse int **matriz blablabla, são criações mais elegantes de matrizes prezando pela eficiencia do codigo, e sim e dificil mesmo
+    for(i=0;i<c;i++){//continuaçao do comentario a cima: todos que lerem essas partes vão se foder mesmo, desculpe programador, além de mim
+        matriz2[i]=(int*)malloc(l*sizeof(int));
+    }
+    int **matriz3 = (int**)malloc(c*sizeof(int*));
+    for(i=0;i<c;i++){
+        matriz3[i]=(int*)malloc(l*sizeof(int));
+    }
     for(int j = 0; j<l;j++){//cria a matriz 1
         for(int i = 0; i < c; i++){//isso muda as colunas, e apos ir em todas as colunas possiveis muda de linha
             printf("matriz1 [%d][%d]\n",j,i);//j=linha atual e i=coluna atual
@@ -185,7 +194,6 @@ int soma_matriz(){//isso aqui sao as somas de matrizes
             limpar_tela();
         }
     }
-    limpar_tela();
     printf("\nvamos a matriz2\n");
     for(int j = 0; j<l;j++){//cra a matriz 2
         for(int i = 0; i < c; i++){
