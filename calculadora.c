@@ -35,7 +35,6 @@ void matrizes_multiplicadas(){
     printf("diga quantas linas da 1ºmatriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
     scanf(" %d",&l1);
     printf("\nagora a 2 matriz\n");
-    sleep(2);
     limpar_tela();
     printf("diga quantas linhas ha na 2º matriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
     scanf(" %d",&c2);
