@@ -5,7 +5,9 @@ toda una esta em panico, entao aqui a soluçao, obvio que nao vcs tao fudidos, m
 # bugs
 1. a multiplicaçao de matrizes buga se as matrizes mumtiplicadas nao tiverem o mesmo tamanho
 
-# manual do user
+# manual do programador 2
+
+eu ainda nao achei uma solução para a adição de bibliotecas, o que me faz recomentar FORTEMENTE que voce compile o codigo, e esses sao os comandos para compilaçao
 
 1. gcc -shared -fPIC  -o calculadora.so calculadora.c tinyexpr.c -lm / para linux
 
