@@ -7,9 +7,11 @@ toda una esta em panico, entao aqui a soluçao, obvio que nao vcs tao fudidos, m
 
 # manual do user
 
-1. execute o instalador.py, seja com o cmd seja no vscode
+1. gcc -shared -fPIC  -o calculadora.so calculadora.c tinyexpr.c -lm / para linux
 
-2. para poder usar qualquer recurso ele é UNICAMENTE acessivel pelo "toda_una_em_panico.py" lembre-se disso.
+2. x86_64-w64-mingw32-gcc -shared -fPIC calculadora.c tinyexpr.c -o calculadora.dll -lm / para windows 
+ 
+-shared -fPIC / transforma o codiogo em c para biblioteca, terirando a nescessidade de uma funçao main
 
 # para o programador:
 esse codigo preza pela facilidade do programador, e do user, e lembre-se, o codigo nao precisa ser algo complexo, mas sim algo facil de ler e funcional, mantendo à facilidade da manutençao para que qualquer dev tanto experiente quanto inexperiente sejám capazes de mexer.
