@@ -48,7 +48,7 @@ while True:#aqui onde o user começa a ver
                oioi = os.path.abspath("calculadora.dll")
           teste = ctypes.CDLL(oioi)
           print("iniciando")
-          print("/n"*1000)
+          print("\n"*1000)
           mimir(3)
           print("""dica:
                 calculos aqui sao diferentes
