@@ -31,18 +31,16 @@ void limpar_tela(){//nome do comando
 
 void matrizes_multiplicadas(){
     limpar_tela();
-    int l1,c1,l2,c2,i,j,coluna,linha;//variaveis nescessarias para multiplicaçao
+    int l1,c1,l2,c2,i,j,resposta,k;//variaveis nescessarias para multiplicaçao
     printf("diga quantas linas da 1ºmatriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
     scanf(" %d",&l1);
     printf("\nagora a 2 matriz\n");
     limpar_tela();
-    printf("diga quantas linhas ha na 2º matriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
+    printf("diga quantas colunas ha na 2º matriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
     scanf(" %d",&c2);
     printf("diga quantas linhas da 2 matriz, e as colunas da 1\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
     scanf(" %d",&l2);
     c1 = l2;
-    int *linhas=(int*)malloc(l1*sizeof(int));//cria o vetor onde tera as respostas para as linhas
-    int *colunas=(int*)malloc(c2*sizeof(int));//cria o vetor onde tera as multipicaçao das colunas
     int **matriz1 = (int**)malloc(c1*sizeof(int*));
     for(i=0;i<c1;i++){//o int de cima e esse de baixo criam uma matriz mais elegante
         matriz1[i]=(int*)malloc(l1*sizeof(int));
@@ -67,26 +65,35 @@ void matrizes_multiplicadas(){
             scanf(" %d",&matriz2[j][i]);
             limpar_tela();
         }
-    }for(j = 0; j<l1;j++){//da os valores ao vetor de linhas
-        linhas[j] = 1;
-        for(i = 0; i < c1; i++){
-            linhas[j] = linhas[j]*matriz1[j][i];
-        }
-    }for(j = 0; j<c2;j++){//da os valores ao vetor de colunas
-        colunas[j] = 1;
-        for(i = 0; i < l2; i++){
-            colunas[j]=colunas[j]*matriz2[j][i];
+    }
+    for(int j = 0; j<l1;j++)//R.I.P. minha sanidade
+    {
+        for(int i = 0; i < c2; i++)
+        {
+            matriz3[j][i] = 0;//zera a parte que iremos colocar na matriz
+            for(k = 0;k<l2;k++)//loop que usa o recurso de que sempre a coluna da matriz 1 sera igual a linha da matriz 1
+            {//tornando possivel o calculo
+                matriz3[j][i]+=matriz1[j][k]*matriz2[k][i];//calcula
+            }
         }
     }
-    for(i=0;i<l1;i++){
-        for(j=0;j<c2;j++){
-            matriz3[i][j]=linhas[i]+colunas[j];
-            printf("%d+%d=%d\n",linhas[i],colunas[i],matriz3[i][j]);
+    printf("\nmatriz1=\n");//printa a matriz 1
+    for(int j = 0; j<l1;j++){
+        for(int i = 0; i < c1; i++){
+            printf("(%d)\0",matriz1[j][i]);
         }
+        printf("\n");
     }
-    printf("\no resuktado e:\n");
-    for(int j = 0; j<c2;j++){
-        for(int i = 0; i < l1; i++){
+    printf("\nmatriz2=\n");
+    for(int j = 0; j<l2;j++){
+        for(int i = 0; i < c2; i++){
+            printf("(%d)\0",matriz2[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\no resultado e:\n");
+    for(int j = 0; j<l1;j++){
+        for(int i = 0; i < c2; i++){
             printf("(%d)\0",matriz3[j][i]);
         }
         printf("\n");
