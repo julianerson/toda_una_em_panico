@@ -87,7 +87,7 @@ void matrizes_multiplicadas(){
     printf("\nmatriz2=\n");
     for(int j = 0; j<l2;j++){
         for(int i = 0; i < c2; i++){
-            printf("(%d)\0",matriz2[i][j]);
+            printf("(%d)\0",matriz2[j][i]);
         }
         printf("\n");
     }
