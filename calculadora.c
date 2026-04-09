@@ -1,4 +1,10 @@
 //mensagem para o programador, LEIA CADA COMENTARIO, eles são o unico documentario aqui
+//---mensagem---//
+//o que e isto: e uma calculadora projetada para estudantes de engenharia
+//quem fez isso? https://www.youtube.com/watch?v=1tpIxo4vy80
+//porque em C? este codigo deve ser eficiente e didatico, e a linguagem mais eficiene e assebly(mas claramente nao e didatica) e a mais didatica e python(0 eficiencia manos e manas e manes)
+//obs: este codigo deve ser compilavel tanto para windows como linux, o resto foda-se
+
 #include <stdio.h>
 #include <string.h>
 #include "tinyexpr.h"//importa a biblioteca responsavel pela tradução de formula, possivelmente sera util em utilizções futuras
@@ -31,7 +37,7 @@ void limpar_tela(){//nome do comando
 
 void matrizes_multiplicadas(){
     limpar_tela();
-    int l1,c1,l2,c2,i,j,resposta,k;//variaveis nescessarias para multiplicaçao
+    int l1,c1,l2,c2,i,j,resposta,k,fl,fc;//variaveis nescessarias para multiplicaçao
     printf("diga quantas linas da 1ºmatriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
     scanf(" %d",&l1);
     printf("\nagora a 2 matriz\n");
@@ -53,10 +59,12 @@ void matrizes_multiplicadas(){
     for(i=0;i<c2;i++){
         matriz3[i]=(int*)malloc(l1*sizeof(int));
     }
-    for(j = 0; j<l1;j++){//da os valores a matriz 1
-        for(i = 0; i < c1; i++){//isso muda as colunas, e apos ir em todas as colunas possiveis muda de linha
-            printf("matriz1 [%d][%d]\n",j,i);//j=linha atual e i=coluna atual
-            scanf(" %d",&matriz1[j][i]);
+    for(i = 0; i<l1;i++){//da os valores a matriz 1
+        for(j = 0; j < c1; j++){//isso muda as colunas, e apos ir em todas as colunas possiveis muda de linha
+            fc = j+1;
+            fl = 1+i;
+            printf("matriz1 [%d][%d]\n",fl,fc);//j=linha atual e i=coluna atual
+            scanf(" %d",&matriz1[i][j]);
             limpar_tela();
         }
     }for(j = 0; j<l2;j++){//da os valores a matriz 2
@@ -66,35 +74,35 @@ void matrizes_multiplicadas(){
             limpar_tela();
         }
     }
-    for(int j = 0; j<l1;j++)//R.I.P. minha sanidade
+    for(i = 0; i<l1;i++)//R.I.P. minha sanidade
     {
-        for(int i = 0; i < c2; i++)
+        for(j = 0; j < c2; j++)
         {
-            matriz3[j][i] = 0;//zera a parte que iremos colocar na matriz
+            matriz3[i][j] = 0;//zera a parte que iremos colocar na matriz
             for(k = 0;k<l2;k++)//loop que usa o recurso de que sempre a coluna da matriz 1 sera igual a linha da matriz 1
             {//tornando possivel o calculo
-                matriz3[j][i]+=matriz1[j][k]*matriz2[k][i];//calcula
+                matriz3[i][j]+=matriz1[i][k]*matriz2[k][j];//calcula
             }
         }
     }
     printf("\nmatriz1=\n");//printa a matriz 1
-    for(int j = 0; j<l1;j++){
-        for(int i = 0; i < c1; i++){
-            printf("(%d)\0",matriz1[j][i]);
+    for(i = 0; i<l1;i++){
+        for(j = 0; j < c1; j++){
+            printf("(%d)\0",matriz1[i][j]);
         }
         printf("\n");
     }
     printf("\nmatriz2=\n");
-    for(int j = 0; j<l2;j++){
-        for(int i = 0; i < c2; i++){
-            printf("(%d)\0",matriz2[j][i]);
+    for(i = 0; i<l2;i++){
+        for(j = 0; j < c2; j++){
+            printf("(%d)\0",matriz2[i][j]);
         }
         printf("\n");
     }
     printf("\no resultado e:\n");
-    for(int j = 0; j<l1;j++){
-        for(int i = 0; i < c2; i++){
-            printf("(%d)\0",matriz3[j][i]);
+    for(i = 0; i<l1;i++){
+        for(j = 0; j < c2; j++){
+            printf("(%d)\0",matriz3[i][j]);
         }
         printf("\n");
     }
@@ -102,7 +110,7 @@ void matrizes_multiplicadas(){
 
 void determinantes(){
     limpar_tela();
-    int l,i,j,col,resposta,solucaoP,linhaP,solucaoS,linhaS;//variaveis nescessarias para a determinantes
+    int l,i,j,col,fl,fc,resposta,solucaoP,linhaP,solucaoS,linhaS;//variaveis nescessarias para a determinantes
     solucaoP = 0;//aqui nos damos aos valores as variaveis para que nao seja alterado o calculo
     solucaoS = 0;
     linhaP = 1;
@@ -121,15 +129,17 @@ void determinantes(){
     for(i=0;i<l;i++){
         matrizs[i]=(int*)malloc(l*sizeof(l));
     }
-    for(j = 0; j<l;j++){//cria a matriz 1
-        for(i = 0; i < l; i++){//isso muda as colunas, e apos ir em todas as colunas possiveis muda de linha
-            printf("matriz1 [%d][%d]\n",j,i);//j=linha atual e i=coluna atual
-            scanf(" %d",&matriz[j][i]);
+    for(i = 0; i<l;i++){//cria a matriz 1
+        for(j = 0; j < l; j++){//isso muda as colunas, e apos ir em todas as colunas possiveis muda de linha
+            fl = i+1;
+            fc = j+1;
+            printf("matriz1 [%d][%d]\n",fl,fc);//j=linha atual e i=coluna atual
+            scanf(" %d",&matriz[i][j]);
             limpar_tela();
         }
     }
     for(j = 0; j<l;j++){//valor para a matrizp
-        for(i = 0; i < l; i++){
+        for(i =  0; i < l; i++){
             col = (j+i)%l;//gambiarra matematica que da coordenadas para que a criaçao dessas matrizes seja possivel
             matrizp[i][j]=matriz[j][col];
         }
@@ -155,9 +165,11 @@ void determinantes(){
         linhaS = 1;
     }
     printf("\na matriz e:\n");
-    for(j = 0; j<l;j++){//matriz
-        for(i=0;i<l;i++){
-            printf("(%d)",matriz[j][i]);
+    for(i = 0; i<l;i++){//matriz
+        for(j=0;j<l;j++){
+            fc = j+1;
+            fl = i+1;
+            printf("(%d)",matriz[i][j]);
         }
         printf("\n");
     }
@@ -170,9 +182,11 @@ void determinantes(){
 
 int soma_matriz(){//isso aqui sao as somas de matrizes
     limpar_tela();
+    int j;
     int i;
     int l;//linhas
     int c;//colunas
+    int fc,fl;//esses serao os valores que os users verao
     char oito[10];
     printf("soma ou subtracao?\n");
     scanf(" %s",&oito);
@@ -193,49 +207,53 @@ int soma_matriz(){//isso aqui sao as somas de matrizes
     for(i=0;i<c;i++){
         matriz3[i]=(int*)malloc(l*sizeof(int));
     }
-    for(int j = 0; j<l;j++){//cria a matriz 1
-        for(int i = 0; i < c; i++){//isso muda as colunas, e apos ir em todas as colunas possiveis muda de linha
-            printf("matriz1 [%d][%d]\n",j,i);//j=linha atual e i=coluna atual
-            scanf(" %d",&matriz1[j][i]);
+    for(int i = 0; i<l;i++){//cria a matriz 1
+        for(int j = 0; j < c; j++){//isso muda as colunas, e apos ir em todas as colunas possiveis muda de linha
+            fl = i+1;
+            fc = j+1;
+            printf("matriz1 [%d][%d]\n",fl,fc);//j=linha atual e i=coluna atual
+            scanf(" %d",&matriz1[i][j]);
             limpar_tela();
         }
     }
     printf("\nvamos a matriz2\n");
-    for(int j = 0; j<l;j++){//cra a matriz 2
-        for(int i = 0; i < c; i++){
-            printf("matriz2 [%d][%d]\n",j,i);
-            scanf(" %d",&matriz2[j][i]);//coloca os dados
+    for(int i = 0; i<l;i++){//cria a matriz 2
+        for(int j = 0; j < c; j++){
+            fl = i+1;
+            fc = j+1;
+            printf("matriz2 [%d][%d]\n",fl,fc);
+            scanf(" %d",&matriz2[i][j]);//coloca os dados
             limpar_tela();
         }
     }
     printf("\nmatriz1=\n");//printa a matriz 1
-    for(int j = 0; j<l;j++){
-        for(int i = 0; i < c; i++){
-            printf("(%d)\0",matriz1[j][i]);
+    for(int i = 0; i<l;i++){
+        for(int j = 0; j < c; j++){
+            printf("(%d)\0",matriz1[i][j]);
         }
         printf("\n");
     }
-    printf("\nmatriz2=\n");
-    for(int j = 0; j<c;j++){
-        for(int i = 0; i < l; i++){
-            printf("(%d)\0",matriz2[j][i]);
+    printf("\nmatriz2=\n");//printa a matriz 2
+    for(int i = 0; i<l;i++){
+        for(int j = 0; j < c; j++){
+            printf("(%d)\0",matriz2[i][j]);
         }
         printf("\n");
     }
-    for(int j = 0; j<l;j++){//calcula as matrizes e faz a matriz3(resultado)
-        for(int i = 0; i < c; i++){
-            matriz3[j][i] = 0;
+    for(int i = 0; i<l;i++){//calcula as matrizes e faz a matriz3(resultado)
+        for(int j = 0; j < c; j++){
+            matriz3[i][j] = 0;
             if(strcmp(oito,"soma")==0){//verifica se e soma ou subtraçao
-                matriz3[j][i] = matriz1[j][i] + matriz2[j][i];
+                matriz3[i][j] = matriz1[i][j] + matriz2[i][j];
             }else if(strcmp(oito,"subtracao")==0){
-                matriz3[j][i] = matriz1[j][i] - matriz2[j][i];
+                matriz3[i][j] = matriz1[i][j] - matriz2[i][j];
             }
         }
     }
     printf("\nmatriz3=\n");
-    for(int j = 0; j<c;j++){
-        for(int i = 0; i < l; i++){
-            printf("(%d)\0",matriz3[j][i]);
+    for(i = 0; i<l;i++){
+        for(j = 0; j < c; j++){
+            printf("(%d)\0",matriz3[i][j]);
         }
         printf("\n");
     }
