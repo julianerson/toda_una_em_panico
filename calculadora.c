@@ -471,7 +471,3 @@ void crack(){
     free(variaveis);
     free(determinantes);
 }
-
-void main(){
-    crack();
-}
