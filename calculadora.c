@@ -457,12 +457,16 @@ void crack(){
             determinantes[cam] = solucaoP - solucaoS;
         }
     }
-    for (g=0;g<t;g++)
-    {
-        respostas[g]=(double)determinantes[g]/determinantes[t];
-        printf("a resposta da variavel %d e (%lf)\n",g+1,respostas[g]);
+    if(determinantes[t]=0){
+        printf("cramer n resolve isso");
+    }else{
+        for (g=0;g<t;g++)
+        {
+            respostas[g]=(double)determinantes[g]/determinantes[t];
+            printf("a resposta da variavel %d e (%lf)\n",g+1,respostas[g]);
+        }
     }
-    
+
     free(matrizp);
     free(matrizs);
     free(matriz);
