@@ -180,7 +180,7 @@ void determinantes(){
     printf("\ne sua determinante e %d\n",resposta);
 }
 
-int soma_matriz(){//isso aqui sao as somas de matrizes
+void soma_matriz(){//isso aqui sao as somas de matrizes
     limpar_tela();
     int j;
     int i;
@@ -317,4 +317,161 @@ int somatorio(){//funçao somatorio
     }
     printf("\nresultado e: %f\n",resultado);//ta ai
     return 0;
+}
+
+void crack(){
+    int t,det,col/*coluna*/,lin/*linha*/,cam/*camadas*/,g;
+    printf("diga quantas variaveis tem no sistema linear\n");
+    scanf(" %d",&t);
+    det = t+1;
+
+    //mesma logica da funçao determinantes()
+    int **matrizp = (int**)malloc(t*sizeof(int*));
+    for(col=0;col<t;col++){
+        matrizp[col]=(int*)malloc(t*sizeof(int));
+    }
+    int **matrizs = (int**)malloc(t*sizeof(int*));
+    for(col=0;col<t;col++){
+        matrizs[col]=(int*)malloc(col*sizeof(int));
+    }
+    //mesma logica da funçao determinantes()
+    
+    int *determinantes = (int*)malloc(det*sizeof(int));//respostas das determinantes
+    int *variaveis =(int*)malloc(t*sizeof(int));//respostas das formulas(sim as respostas das formulas ficam em uma lista propria)
+    double *respostas = (double*)malloc(t*sizeof(double));//respostas das variaveis mesmo
+    int **matriz = (int**)malloc(t*sizeof(int*));//formulas de verdade
+
+    //matriz normal
+    for(col=0;col<t;col++){
+        matriz[col]=(int*)malloc(t*sizeof(int));
+    }
+    //matriz normal
+
+    //matriz com variaveis
+    int ***tudo = (int***)malloc(t * sizeof(int**));//cria linha 1
+    for (int lin = 0; lin < t; lin++) {
+        tudo[lin] = (int**)malloc(t * sizeof(int*));//faz matriz bidimensional
+        for (int col = 0; col < t; col++) {
+            tudo[lin][col] = (int*)malloc(t * sizeof(int));//3 dimensoes amor
+        }
+    }
+    //matriz com variaveis
+
+    printf("agora fale os numeros das formulas em ordem\n");
+    for(lin=0;lin<t;lin++){
+        for (col = 0; col < t; col++){
+            printf("valor na formula %d posiçao %d \n",lin+1,col+1);
+            scanf(" %d",&g);
+            matriz[lin][col]=g;
+        }
+        limpar_tela();
+    }
+
+    for (lin=0;lin<t;lin++)
+    {
+        printf("diga a resposta da formula %d\n",lin+1);
+        scanf(" %d",&g);
+        variaveis[lin]=g;
+        limpar_tela();
+    }
+
+    //valores matrizes
+    for (cam = 0; cam < t; cam++){
+        for (lin = 0; lin < t; lin++){
+            for (col = 0; col < t; col++){
+                if(cam==col){
+                    tudo[cam][lin][col]=variaveis[lin];
+                }else{
+                    tudo[cam][lin][col]=matriz[lin][col];
+                }
+            }
+        }
+    }
+    //valores matrizes
+
+    int resposta,solucaoP,linhaP,solucaoS,linhaS;//variaveis nescessarias para a determinantes
+    
+    for (cam = 0; cam < det; cam++){
+        solucaoP = 0;//aqui nos damos aos valores as variaveis para que nao seja alterado o calculo
+        solucaoS = 0;
+        linhaP = 1;
+        linhaS = 1;
+        if (cam!=t){
+        
+            for(lin = 0; lin < t; lin++){//valor para a matrizp
+                for(col = 0; col < t; col++){
+                    g = (col+lin)%t;//gambiarra matematica que da coordenadas para que a criaçao dessas matrizes seja possivel
+                    matrizp[lin][col]=tudo[cam][col][g];
+                }
+            }
+            for(lin = 0; lin < t; lin++){
+                for(col = 0; col < t; col++){//valor da matrizs
+                    g = (t-1) - ((col+lin)%t);//gambiarra 2x
+                    matrizs[lin][col]=tudo[cam][col][g];
+                }
+            }
+            for(lin = 0; lin < t; lin++){//aqui a matrizp e calculada para que funcione igual o calculo da diagonal principal
+                for(col = 0; col < t; col++){
+                    linhaP = linhaP * matrizp[lin][col];
+                };
+                solucaoP += linhaP;
+                linhaP = 1;
+            }
+            for(lin = 0; lin < t; lin++){//mesmo que o loop acima
+                for(col = 0; col < t; col++){
+                    linhaS = linhaS * matrizs[lin][col];
+                };
+                solucaoS += linhaS;
+                linhaS = 1;
+            }
+            printf("(%d)(%d)%d\n",solucaoP, solucaoS,cam+1);
+            determinantes[cam] = solucaoP - solucaoS;
+        }else{
+            for(lin = 0; lin < t; lin++){//valor para a matrizp
+                for(col = 0; col < t; col++){
+                    g = (col+lin)%t;//gambiarra matematica que da coordenadas para que a criaçao dessas matrizes seja possivel
+                    matrizp[lin][col]=matriz[col][g];
+                }
+            }
+            for(lin = 0; lin < t; lin++){
+                for(col = 0; col < t; col++){//valor da matrizs
+                    g = (t-1) - ((col+lin)%t);//gambiarra 2x
+                    matrizs[lin][col]=matriz[col][g];
+                }
+            }
+            for(lin = 0; lin < t; lin++){//aqui a matrizp e calculada para que funcione igual o calculo da diagonal principal
+                for(col = 0; col < t; col++){
+                    linhaP = linhaP * matrizp[lin][col];
+                };
+                solucaoP += linhaP;
+                linhaP = 1;
+            }
+            for(lin = 0; lin < t; lin++){//mesmo que o loop acima
+                for(col = 0; col < t; col++){
+                    linhaS = linhaS * matrizs[lin][col];
+                };
+                solucaoS += linhaS;
+                linhaS = 1;
+            }
+            printf("matriz normal(%d)(%d)%d\n",solucaoP, solucaoS,cam+1);
+            determinantes[cam] = solucaoP - solucaoS;
+        }
+    }
+    for (g=0;g<t;g++)
+    {
+        respostas[g]=(double)determinantes[g]/determinantes[t];
+        printf("a resposta da variavel %d e (%lf)\n",g+1,respostas[g]);
+    }
+    
+    free(matrizp);
+    free(matrizs);
+    free(matriz);
+    free(tudo);
+    free(respostas);
+    free(variaveis);
+    free(determinantes);
+}
+
+void main(){
+    crack();
 }
