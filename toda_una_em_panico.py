@@ -40,7 +40,7 @@ while True:#aqui onde o user começa a ver
      elif 'calculadoraC' in AGUI:
           mom = inquirer.select(#escolhe o comando para c
                message='o que vc quer?',
-               choices=["loop","matrizes","determinantes","matriz-multiplicada"]
+               choices=["loop","matrizes","determinantes","matriz-multiplicada","cramer"]
                ).execute()#menu principal
           if os.name == "posix":          
                oioi = os.path.abspath("calculadora.so")
@@ -76,4 +76,8 @@ while True:#aqui onde o user começa a ver
                print("iniciando...")
                mimir(2)
                teste.matrizes_multiplicadas()
+          elif "cramer" in mom:
+               print("iniciando...")
+               mimir(2)
+               teste.crack()
           continue
