@@ -1,15 +1,15 @@
 //mensagem para o programador, LEIA CADA COMENTARIO, eles são o unico documentario aqui
 //---mensagem---//
 //o que e isto: e uma calculadora projetada para estudantes de engenharia
-//quem fez isso? https://www.youtube.com/watch?v=1tpIxo4vy80
 //porque em C? este codigo deve ser eficiente e didatico, e a linguagem mais eficiene e assebly(mas claramente nao e didatica) e a mais didatica e python(0 eficiencia manos e manas e manes)
-//obs: este codigo deve ser compilavel tanto para windows como linux, o resto foda-se
+//obs: este codigo deve ser compilavel tanto para windows como linux
 
 #include <stdio.h>
 #include <string.h>
 #include "tinyexpr.h"//importa a biblioteca responsavel pela tradução de formula, possivelmente sera util em utilizções futuras
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 // Verifica se é Windows (32 ou 64 bits)
 #if defined(_WIN32) || defined(_WIN64)
@@ -22,13 +22,13 @@
     #include <unistd.h>
 
 #else//caso nao soubermos o os
-    #define OS_NAME "Desconhecido"//"e a galerinha do mac" foda-se eles, quase ninguem deles programa, eu espero
+    #define OS_NAME "Desconhecido"
 #endif
 
 const double p = 3.141593;//pi e constante em TODO O CODIGO, e e uma variavel externa
 
-void limpar_tela(){//nome do comando
-    if(strcmp(OS_NAME,"Windows")==0){//comando de limpeza, tanto para windows quanto mac
+void limpar_tela(){//funçao de limpeza
+    if(strcmp(OS_NAME,"Windows")==0){
         system("cls");
     }else if(strcmp(OS_NAME,"unixlike")==0){
         system("clear");
@@ -424,7 +424,6 @@ void crack(){
                 solucaoS += linhaS;
                 linhaS = 1;
             }
-            printf("(%d)(%d)%d\n",solucaoP, solucaoS,cam+1);
             determinantes[cam] = solucaoP - solucaoS;
         }else{
             for(lin = 0; lin < t; lin++){//valor para a matrizp
@@ -453,17 +452,16 @@ void crack(){
                 solucaoS += linhaS;
                 linhaS = 1;
             }
-            printf("matriz normal(%d)(%d)%d\n",solucaoP, solucaoS,cam+1);
             determinantes[cam] = solucaoP - solucaoS;
         }
     }
-    if(determinantes[t]=0){
+    if(determinantes[t]==0){
         printf("cramer n resolve isso");
     }else{
         for (g=0;g<t;g++)
         {
             respostas[g]=(double)determinantes[g]/determinantes[t];
-            printf("a resposta da variavel %d e (%lf)\n",g+1,respostas[g]);
+            printf("a resposta da variavel %d e %d/%d = (%lf)\n",g+1,determinantes[g],determinantes[t],respostas[g]);
         }
     }
 
