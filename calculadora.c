@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
+#include <float.h>
 
 // Verifica se é Windows (32 ou 64 bits)
 #if defined(_WIN32) || defined(_WIN64)
@@ -461,6 +462,10 @@ void crack(){
         for (g=0;g<t;g++)
         {
             respostas[g]=(double)determinantes[g]/determinantes[t];
+            if (!isfinite(respostas[g]))//verifica se vai sre um numero beeeeem longo, nivel acuima de um double 
+            {
+                respostas[g] = copysign(DBL_MAX, respostas[g]); // aproxima pelo maior double possível
+            }
             printf("a resposta da variavel %d e %d/%d = (%lf)\n",g+1,determinantes[g],determinantes[t],respostas[g]);
         }
     }
