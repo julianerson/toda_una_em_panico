@@ -80,4 +80,5 @@ while True:#aqui onde o user começa a ver
                print("iniciando...")
                mimir(2)
                teste.crack()
+          del teste
           continue
