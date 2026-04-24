@@ -14,24 +14,24 @@
 
 // Verifica se é Windows (32 ou 64 bits)
 #if defined(_WIN32) || defined(_WIN64)
-    #define OS_NAME "Windows"
+    #define OS_NOME "Windows"
     #include <windows.h> // Biblioteca específica do Windows
 
 // Verifica se é Linux ou Unix
 #elif defined(__unix__) || defined(__unix) || defined(__linux__)
-    #define OS_NAME "unixlike"
+    #define OS_NOME "unixlike"
     #include <unistd.h>
 
 #else//caso nao soubermos o os
-    #define OS_NAME "Desconhecido"
+    #define OS_NOME "Desconhecido"
 #endif
 
 const double p = 3.141593;//pi e constante em TODO O CODIGO, e e uma variavel externa
 
 void limpar_tela(){//funçao de limpeza
-    if(strcmp(OS_NAME,"Windows")==0){
+    if(strcmp(OS_NOME,"Windows")==0){
         system("cls");
-    }else if(strcmp(OS_NAME,"unixlike")==0){
+    }else if(strcmp(OS_NOME,"unixlike")==0){
         system("clear");
     }
 }
@@ -260,7 +260,7 @@ void soma_matriz(){//isso aqui sao as somas de matrizes
     }
 }
 
-int somatorio(){//funçao somatorio
+void somatorio(){//funçao somatorio
     limpar_tela();
     char comando[20];
     double i = 0;//diz o i
