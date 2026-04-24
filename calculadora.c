@@ -349,13 +349,13 @@ void crack(){
     //matriz normal
 
     //matriz com variaveis
-    int ***tudo = (int***)malloc(t * sizeof(int**));//cria linha 1
-    for (int lin = 0; lin < t; lin++) {
-        tudo[lin] = (int**)malloc(t * sizeof(int*));//faz matriz bidimensional
-        for (int col = 0; col < t; col++) {
-            tudo[lin][col] = (int*)malloc(t * sizeof(int));//3 dimensoes amor
-        }
-    }
+    int ***tudo = (int***)malloc(t * sizeof(int**));//isso gera um ptr3, que tem o valor de um  int de ptr3, que por esse sera adicionado o valor de t ints de ponteiro de ponteiro 
+    for (int lin = 0; lin < t; lin++) {//e para cada um desses ints
+        tudo[lin] = (int**)malloc(t * sizeof(int*));//terao o valor de um int de pnteiro de ponteiro, so que sera forçado t ints de ponteiro
+        for (int col = 0; col < t; col++) {//que para cada um desses ints gerados
+            tudo[lin][col] = (int*)malloc(t * sizeof(int));//terao o valor de um int de ponteiro, com o valor de t ints normais
+        }//porque usar ponteiros? pois os ponteiros podem ser livremente alterados enquanto o codigo roda, assim podemos forçar espaços
+    }//resumo: isso gera ponteiros 3, que nestes forçamos o valor de t ponteiros t(gerando um vetor), e assim ate que o int seja de numeros normais
     //matriz com variaveis
 
     printf("agora fale os numeros das formulas em ordem\n");
