@@ -321,7 +321,7 @@ void somatorio(){//funçao somatorio
 }
 
 void crack(){
-    int t,det,col/*coluna*/,lin/*linha*/,cam/*camadas*/,g;
+    int t,det,col/*coluna*/,lin/*linha*/,cam/*camadas*/,g,fds;
     printf("diga quantas variaveis tem no sistema linear\n");
     scanf(" %d",&t);
     det = t+1;
@@ -456,6 +456,18 @@ void crack(){
             determinantes[cam] = solucaoP - solucaoS;
         }
     }
+
+    limpar_tela();
+    printf("a matriz e:\n");
+    for (g=0;g<t;g++)
+    {
+        for (fds=0;fds<t;fds++)
+        {
+            printf(" (%d) ",matriz[g][fds]);
+        }
+        printf("= (%d)\n",variaveis[g]);                
+    }
+
     if(determinantes[t]==0){
         printf("cramer n resolve isso");
     }else{
@@ -465,7 +477,7 @@ void crack(){
             if (!isfinite(respostas[g]))//verifica se vai sre um numero beeeeem longo, nivel acuima de um double 
             {
                 respostas[g] = copysign(DBL_MAX, respostas[g]); // aproxima pelo maior double possível
-            }
+            }    
             printf("a resposta da variavel %d e %d/%d = (%lf)\n",g+1,determinantes[g],determinantes[t],respostas[g]);
         }
     }
