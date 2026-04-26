@@ -11,11 +11,6 @@ transformations = standard_transformations + (implicit_multiplication_applicatio
 
 calc = calculo()
 
-if os.name == "posix":          
-     oioi = os.path.abspath("calculadora.so")
-if os.name == "nt":          
-     oioi = os.path.abspath("calculadora.dll")
-teste = ctypes.CDLL(oioi)
 
 def informacoes():#informaçoes
      print('''calculos:
@@ -44,6 +39,13 @@ while True:#aqui onde o user começa a ver
           calc.integraçoes_definidas()
           continue
      elif 'calculadoraC' in AGUI:
+
+          if os.name == "posix":          
+               oioi = os.path.abspath("calculadora.so")
+          if os.name == "nt":          
+               oioi = os.path.abspath("calculadora.dll")
+          teste = ctypes.CDLL(oioi)
+
           mom = inquirer.select(#escolhe o comando para c
                message='o que vc quer?',
                choices=["loop","matrizes","determinantes","matriz-multiplicada","cramer"]
@@ -81,4 +83,5 @@ while True:#aqui onde o user começa a ver
                print("iniciando...")
                mimir(2)
                teste.crack()
+          del teste
           continue
