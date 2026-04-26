@@ -40,7 +40,7 @@ while True:#aqui onde o user começa a ver
           continue
      elif 'calculadoraC' in AGUI:
 
-          if os.name == "posix":          
+          if os.name == "posix":#daqui ate a linha 47 e usado a biblioteca compartilhada desse codigo
                oioi = os.path.abspath("calculadora.so")
           if os.name == "nt":          
                oioi = os.path.abspath("calculadora.dll")
@@ -83,5 +83,5 @@ while True:#aqui onde o user começa a ver
                print("iniciando...")
                mimir(2)
                teste.crack()
-          del teste
+          del teste#isso retira os lixos de memoria, mas tambem retira o uso da calculadora
           continue
