@@ -317,7 +317,6 @@ void somatorio(){//funçao somatorio
         }
     }
     printf("\nresultado e: %f\n",resultado);//ta ai
-    return 0;
 }
 
 void crack(){
@@ -365,11 +364,6 @@ void crack(){
             scanf(" %d",&g);
             matriz[lin][col]=g;
         }
-        limpar_tela();
-    }
-
-    for (lin=0;lin<t;lin++)
-    {
         printf("diga a resposta da formula %d\n",lin+1);
         scanf(" %d",&g);
         variaveis[lin]=g;
