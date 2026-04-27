@@ -5,8 +5,10 @@ SECTIONS
 
     /* Cria uma seção específica para o cabeçalho no início */
     .header : {
-        BYTE(0xF0) /* Primeiro byte (ex: 0xDE) */
-        BYTE(0xDA) /* Segundo byte (ex: 0xAD) */
+        BYTE(0xCA)
+        BYTE(0xFE)
+        BYTE(0xF0)
+        BYTE(0xDA)      
     }
 
     /* Coloca o código/dados normais depois */
