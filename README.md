@@ -31,9 +31,9 @@ dica:
 
 eu ainda nao achei uma solução para a adição de bibliotecas, o que me faz recomentar FORTEMENTE que voce compile o codigo, e esses sao os comandos para compilaçao
 
-1. gcc -shared -fPIC  -o calculadora.so calculadora.c tinyexpr.c -lm / para linux
+1. gcc -fPIC -shared -o calculadora.so calculadora.c tinyexpr.c -lm -Wl,-T,teste.ld / para linux
 
-2. x86_64-w64-mingw32-gcc -shared -fPIC calculadora.c tinyexpr.c -o calculadora.dll -lm / para windows 
+2. x86_64-w64-mingw32-gcc -shared -o calculadora.dll calculadora.c tinyexpr.c -lm / para windows 
  
 -shared -fPIC / transforma o codiogo em c para biblioteca, terirando a nescessidade de uma funçao main
 
