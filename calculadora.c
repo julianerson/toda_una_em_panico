@@ -385,7 +385,8 @@ void crack(){
     //valores matrizes
 
     int resposta,solucaoP,linhaP,solucaoS,linhaS;//variaveis nescessarias para a determinantes
-    
+    char varea;
+
     for (cam = 0; cam < det; cam++){
         solucaoP = 0;//aqui nos damos aos valores as variaveis para que nao seja alterado o calculo
         solucaoS = 0;
@@ -457,7 +458,8 @@ void crack(){
     {
         for (fds=0;fds<t;fds++)
         {
-            printf(" (%d) ",matriz[g][fds]);
+            varea = (char)fds + 65;
+            printf(" (%d)%c ",matriz[g][fds],varea);
         }
         printf("| (%d)\n",variaveis[g]);                
     }
@@ -471,8 +473,9 @@ void crack(){
             if (!isfinite(respostas[g]))//verifica se vai sre um numero beeeeem longo, nivel acuima de um double 
             {
                 respostas[g] = copysign(DBL_MAX, respostas[g]); // aproxima pelo maior double possível
-            }    
-            printf("a resposta da variavel %d e %d/%d = (%lf)\n",g+1,determinantes[g],determinantes[t],respostas[g]);
+            }
+            varea =(char)g + 65;   
+            printf("a resposta da variavel %c e %d/%d = (%lf)\n",varea,determinantes[g],determinantes[t],respostas[g]);
         }
     }
 
