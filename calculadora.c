@@ -459,7 +459,7 @@ void crack(){
         {
             printf(" (%d) ",matriz[g][fds]);
         }
-        printf("= (%d)\n",variaveis[g]);                
+        printf("| (%d)\n",variaveis[g]);                
     }
 
     if(determinantes[t]==0){
