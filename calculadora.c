@@ -453,7 +453,7 @@ void crack(){
     }
 
     limpar_tela();
-    printf("a matriz e:\n");
+    printf("o sistema linear e:\n");
     for (g=0;g<t;g++)
     {
         for (fds=0;fds<t;fds++)
