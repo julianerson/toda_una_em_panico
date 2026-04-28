@@ -461,7 +461,7 @@ void crack(){
             varea = (char)fds + 65;
             printf(" (%d)%c ",matriz[g][fds],varea);
         }
-        printf("| (%d)\n",variaveis[g]);                
+        printf("= (%d)\n",variaveis[g]);                
     }
 
     if(determinantes[t]==0){
