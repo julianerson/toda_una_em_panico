@@ -2,6 +2,12 @@
 
 toda una esta em panico, entao aqui a soluçao, obvio que nao vcs tao fudidos, mas isso pode ajudar, no momento temos integrais simples, determinantes, somatorio e produtorio
 
+# baixar toda una em panico
+
+para baixar a versao user va a esse site
+
+https://julianerson.github.io/baixar_toda_una_em_panico/
+
 # bugs
 1. a multiplicaçao de matrizes buga se as matrizes mumtiplicadas nao tiverem o mesmo tamanho
 
