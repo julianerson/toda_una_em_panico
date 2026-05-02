@@ -316,7 +316,7 @@ void somatorio(){//funçao somatorio
             printf("Erro na posição %d\n", err);//se der erro na sua formula
         }
     }
-    printf("\nresultado e: %f\n",resultado);//ta ai
+    printf("\nresultado e: %g\n",resultado);//ta ai
 }
 
 void crack(){
@@ -464,8 +464,10 @@ void crack(){
         printf("= (%d)\n",variaveis[g]);                
     }
 
+    printf("\n");
+
     if(determinantes[t]==0){
-        printf("cramer n resolve isso");
+        printf("cramer n resolve isso\n");
     }else{
         for (g=0;g<t;g++)
         {
@@ -475,9 +477,10 @@ void crack(){
                 respostas[g] = copysign(DBL_MAX, respostas[g]); // aproxima pelo maior double possível
             }
             varea =(char)g + 65;   
-            printf("a resposta da variavel %c e %d/%d = (%lf)\n",varea,determinantes[g],determinantes[t],respostas[g]);
+            printf("na resposta da variavel %c e %d/%d = (%g)\n",varea,determinantes[g],determinantes[t],respostas[g]);
         }
     }
+    printf("\n");
 
     free(matrizp);
     free(matrizs);
@@ -486,4 +489,56 @@ void crack(){
     free(respostas);
     free(variaveis);
     free(determinantes);
+}
+
+void decomposicao_vetor(){
+    double angulo,modulo,respostaX,respostaY;
+    printf("\nvamos dilacerar esse vetor!\n");
+    printf("me conta o tamanho/modulo dele\n");
+    scanf(" %lf",&modulo);
+    printf("\nangora, qual seria o angulo dele no plano x?\n");
+    scanf(" %lf", &angulo);
+    respostaX=modulo*cos(angulo);
+    respostaY=modulo*sin(angulo);
+    printf("\no vetor %g tem os vetores %gX e %gY",modulo,respostaX,respostaY);
+}
+void soma_vetor_simples(){
+    double vetorX,vetorY,vetor,angulo;
+    printf("vamos fazer uma soma de dois vetors, simples ne?\n");
+    printf("diga o vetor de baixo, ou tambem o x\n");
+    scanf(" %lf",vetorX);
+    printf("\ndiga o vetor de cima, ou tambem o y\n");
+    scanf(" %lf",vetorY);
+    vetor = sqrt(pow(vetorX,2)+pow(vetorY,2));//calcula o vetor
+    angulo = atan2(vetorY,vetorX);//calcula o angulo do vetor com arcotangente
+    printf("\no vetor tem o tamanho de %g e com o angulo de %g sbre o vetor x",vetor,angulo);
+}
+void soma_vetor_complexo(){
+    int n,i;
+    double resposta,x,y,angulo;
+    printf("para voce ter vindo aqui, voce vai somar varios vetores de diferentes angulos, obs os angulos usam o x como refeencia");
+    printf("\nquantos vetores temos?\n");
+    scanf(" %d",n);
+    double *vetores = (double*)malloc(n*sizeof(double));
+    double *angulos = (double*)malloc(n*sizeof(double));
+    for (i=0;i<n;i++)
+    {
+        printf("diga o modulo do vetor %d\n",i+1);
+        scanf(" %lf",vetores[i]);
+        printf("diga o angulo do vetor %d\n",i+1);
+        scanf(" %lf",angulos[i]);
+        limpar_tela();
+    }
+    x=0;
+    y=0;
+    for (i = 0; i < n; i++)
+    {
+        x += (vetores[i] * cos(angulos[i]));
+        y += (vetores[i] * sin(angulos[i]));
+    }
+    resposta = sqrt(pow(y,2)+pow(x,2));//calcula o vetor
+    angulo = atan2(y,x);//calcula o angulo do vetor com arcotangente
+    printf("o resultado dessa soma e um devotr com o modulo %g e o angulo %g",resposta,angulo);
+    free(vetores);
+    free(angulos);
 }

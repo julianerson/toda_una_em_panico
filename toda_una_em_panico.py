@@ -30,14 +30,11 @@ while True:#aqui onde o user começa a ver
           break
      elif 'info' in AGUI:#da as informaçoes basicas
           informacoes()
-          continue
      elif 'integracao indefinida' in AGUI:
           calc.integraçoes_indefinidas()
           print('otimo, temos mais contas otaro')
-          continue
      elif 'integraçao definida' in AGUI:
           calc.integraçoes_definidas()
-          continue
      elif 'calculadoraC' in AGUI:
 
           if os.name == "posix":#daqui ate a linha 47 e usado a biblioteca compartilhada desse codigo
@@ -48,11 +45,9 @@ while True:#aqui onde o user começa a ver
 
           mom = inquirer.select(#escolhe o comando para c
                message='o que vc quer?',
-               choices=["loop","matrizes","determinantes","matriz-multiplicada","cramer"]
+               choices=["sair","formulas","matrizes","vetores"]
                ).execute()#menu principal
-          print("iniciando")
           print("\n"*1000)
-          mimir(3)
           print("""dica:
                 calculos aqui sao diferentes
                 para potencia= pow(numero,expoente)
@@ -62,26 +57,38 @@ while True:#aqui onde o user começa a ver
                 log natural = log(x)
                 log de 10 = log10(x)
                 pi = p""")
-          mimir(5)
-          if "loop" in mom:
-               print("iniciando...")
-               mimir(2)
-               teste.somatorio()
+          mimir(8)
+          if "sair" in mom:
+               break
+          elif "formulas" in mom:
+               formulas_gui = inquirer.select(
+                    message='formula bruta? nao se preucupe, so escolha a soluçao no catalogo',
+                    choices=["loop","cramer"]
+                    ).execute()#menu
+               if "loop" in formulas_gui:
+                    teste.somatorio()
+               elif "cramer" in formulas_gui:
+                    teste.crack()
           elif "matrizes" in mom:
-               print("iniciando...")
-               mimir(2)
-               teste.soma_matriz()
-          elif "determinantes" in mom:
-               print("iniciando...")
-               mimir(2)
-               teste.determinantes()
-          elif "matriz-multiplicada" in mom:
-               print("iniciando...")
-               mimir(2)
-               teste.matrizes_multiplicadas()
-          elif "cramer" in mom:
-               print("iniciando...")
-               mimir(2)
-               teste.crack()
+               matrizes_gui = inquirer.select(
+                    message='matrizes, isso me intriga, bem aqui as nossas soluçoes abaixo',
+                    choices=["soma-subtraçao","multiplicacao","determinantes"]
+                    ).execute()
+               if "soma-subtraçao" in matrizes_gui:
+                    teste.soma_matriz()
+               elif "multiplicacao" in matrizes_gui:
+                    teste.matrizes_multiplicadas()
+               elif "determinantes" in matrizes_gui:
+                    teste.determinantes()
+          elif "vetores" in mom:
+               vetor_gui = inquirer.select(message='VETOR! sou eu, esse e meu nome porque cometo CRIMES com precisao e magnetude',
+                    choices=["decomposicao","soma-vetor","soma_vetor_complexa"]
+                    ).execute()
+               if "decomposiçao" in vetor_gui:
+                    teste.decomposicao_vetor()
+               elif "soma-vetor" in vetor_gui:
+                    teste.soma_vetor_simples()
+               elif "soma_vetor_complexa" in vetor_gui:
+                    teste.soma_vetor_complexo()
           del teste#isso retira os lixos de memoria, mas tambem retira o uso da calculadora
           continue
