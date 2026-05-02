@@ -84,7 +84,7 @@ while True:#aqui onde o user começa a ver
                vetor_gui = inquirer.select(message='VETOR! sou eu, esse e meu nome porque cometo CRIMES com precisao e magnetude',
                     choices=["decomposicao","soma-vetor","soma_vetor_complexa"]
                     ).execute()
-               if "decomposiçao" in vetor_gui:
+               if "decomposicao" in vetor_gui:
                     teste.decomposicao_vetor()
                elif "soma-vetor" in vetor_gui:
                     teste.soma_vetor_simples()
