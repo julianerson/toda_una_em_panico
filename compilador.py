@@ -1,3 +1,20 @@
+# licença GNU GPL v3
+# toda_una_em_panico | a calculadora para engenheiros novatos desesperados
+# Copyright (C) 2026 Nilson
+# Contato: nilson.m.b.abreu@gmail.com
+#
+# Este programa é software livre: você pode redistribuí-lo e/ou modificá-lo
+# sob os termos da GNU General Public License publicada pela Free Software Foundation,
+# na versão 3 da Licença, ou (a seu critério) qualquer versão posterior.
+#
+# Este programa é distribuído na esperança de que seja útil,
+# mas SEM NENHUMA GARANTIA; sem mesmo a garantia implícita de
+# COMERCIALIZAÇÃO ou ADEQUAÇÃO A UM PROPÓSITO PARTICULAR.
+# Veja a GNU General Public License para mais detalhes.
+#
+# Você deve ter recebido uma cópia da GNU General Public License
+# junto com este programa. Se não, veja <https://www.gnu.org/licenses/>
+
 import subprocess
 import os
 from time import sleep
@@ -52,6 +69,6 @@ if git.strip().lower() == "s":
             except subprocess.CalledProcessError:
                 print(f"❌ Erro ao adicionar: {caminho_completo}")
 
-    # 3. Executa o Commit e o Push exibindo as mensagens do terminal
-    subprocess.run("git commit -m 'atualizacao generica'", shell=True)
+    i = input("diga o nome da atualizacao:  ")
+    subprocess.run(f"git commit -m '{i}'", shell=True)
     subprocess.run("git push", shell=True)
