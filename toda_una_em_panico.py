@@ -37,14 +37,25 @@ def informacoes():#informaçoes
       multiplicaçao * (ex: 2*2=4)
       para potencia ^ (ex: 3^2 = 9)
 estamos em atualizaçoes desculpe''')
-
+print("""toda_una_em_panico Copyright (C) 2026  nilson moreira borges de abreu
+    Este programa vem com ABSOLUTAMENTE NENHUMA GARANTIA; 
+     Este é um software livre, e você pode redistribuí-lo
+    sob certas condições; entre em 'licenca-glp' para obter detalhes.""")
 while True:#aqui onde o user começa a ver
      AGUI = inquirer.select(
             message='vamos aos calculos',
-            choices=['sair','info','integracao indefinida', 'integraçao definida','calculadoraC']
+            choices=['licenca-glp','sair','info','integracao indefinida', 'integraçao definida','calculadoraC']
             ).execute()#menu principal
      if 'sair' in AGUI:#sai
           break
+     elif 'licenca-glp' in AGUI:
+          print("vamos la a licença e :\n\n")
+          caminho_arquivo = 'LICENCE.md'
+
+          # Abre o arquivo com a codificação UTF-8 para suportar acentos
+          with open(caminho_arquivo, 'r', encoding='utf-8') as arquivo:
+               conteudo = arquivo.read()
+               print(conteudo)
      elif 'info' in AGUI:#da as informaçoes basicas
           informacoes()
      elif 'integracao indefinida' in AGUI:
