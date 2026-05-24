@@ -265,7 +265,7 @@ void somatorio(){//funçao somatorio
     char comando[20];
     double i = 0;//diz o i
 
-    printf("você quer somatorio,produtorio\n");
+    printf("você quer somatorio ou produtorio\n");
     scanf(" %s",&comando);
     limpar_tela();
 
@@ -278,8 +278,8 @@ void somatorio(){//funçao somatorio
 
     int repeti = 0;
     printf("\ndiga quanto isso vai repetir\n");
-    scanf(" %d", &repeti);
     printf(">");
+    scanf(" %d", &repeti);
     getchar();
 
     limpar_tela();

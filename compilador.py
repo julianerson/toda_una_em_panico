@@ -53,6 +53,5 @@ if git.strip().lower() == "s":
                 print(f"❌ Erro ao adicionar: {caminho_completo}")
 
     # 3. Executa o Commit e o Push exibindo as mensagens do terminal
-    print("\n💾 Enviando alterações...")
     subprocess.run("git commit -m 'atualizacao generica'", shell=True)
     subprocess.run("git push", shell=True)
