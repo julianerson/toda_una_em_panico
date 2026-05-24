@@ -82,7 +82,7 @@ while True:#aqui onde o user começa a ver
                     teste.determinantes()
           elif "vetores" in mom:
                vetor_gui = inquirer.select(message='VETOR! sou eu, esse e meu nome porque cometo CRIMES com precisao e magnetude',
-                    choices=["decomposicao","soma-vetor","soma_vetor_complexa"]
+                    choices=["decomposicao","soma-vetor","soma_vetor_complexa","multiplicacao_vetores"]
                     ).execute()
                if "decomposicao" in vetor_gui:
                     teste.decomposicao_vetor()
@@ -90,5 +90,7 @@ while True:#aqui onde o user começa a ver
                     teste.soma_vetor_simples()
                elif "soma_vetor_complexa" in vetor_gui:
                     teste.soma_vetor_complexo()
+               elif "multiplicacao_vetores" in vetor_gui:
+                    teste.multiplicaçao_vetores()
           del teste#isso retira os lixos de memoria, mas tambem retira o uso da calculadora
           continue

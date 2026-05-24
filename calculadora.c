@@ -39,11 +39,11 @@ void limpar_tela(){//funçao de limpeza
 void matrizes_multiplicadas(){
     limpar_tela();
     int l1,c1,l2,c2,i,j,resposta,k,fl,fc;//variaveis nescessarias para multiplicaçao
-    printf("diga quantas linas da 1ºmatriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
+    printf("diga quantas linhas da 1matriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
     scanf(" %d",&l1);
     printf("\nagora a 2 matriz\n");
     limpar_tela();
-    printf("diga quantas colunas ha na 2º matriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
+    printf("diga quantas colunas ha na 2 matriz\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
     scanf(" %d",&c2);
     printf("diga quantas linhas da 2 matriz, e as colunas da 1\n");//da o tamanho da matriz, não e muito elegante mas e o que temos
     scanf(" %d",&l2);
@@ -265,7 +265,7 @@ void somatorio(){//funçao somatorio
     char comando[20];
     double i = 0;//diz o i
 
-    printf("você quer somatorio ou produtorio ?\n");
+    printf("você quer somatorio,produtorio\n");
     scanf(" %s",&comando);
     limpar_tela();
 
@@ -313,7 +313,7 @@ void somatorio(){//funçao somatorio
             te_free(expr);//zera a expreçao para poder refazer as contas
             i++;//reintera o i
         } else {
-            printf("Erro na posição %d\n", err);//se der erro na sua formula
+            printf("Erro na posicao %d\n", err);//se der erro na sua formula
         }
     }
     printf("\nresultado e: %g\n",resultado);//ta ai
@@ -360,7 +360,7 @@ void crack(){
     printf("agora fale os numeros das formulas em ordem\n");
     for(lin=0;lin<t;lin++){
         for (col = 0; col < t; col++){
-            printf("valor na formula %d posiçao %d \n",lin+1,col+1);
+            printf("valor na formula %d posicao %d \n",lin+1,col+1);
             scanf(" %d",&g);
             matriz[lin][col]=g;
         }
@@ -496,7 +496,7 @@ void decomposicao_vetor(){
     printf("\nvamos dilacerar esse vetor!\n");
     printf("me conta o tamanho/modulo dele\n");
     scanf(" %lf",&modulo);
-    printf("angora, qual seria o angulo dele no plano x?\n");
+    printf("agora, qual seria o angulo dele no plano x?\n");
     scanf(" %lf", &angulo);
     respostaX=modulo*cos((angulo*p)/180);
     respostaY=modulo*sin((angulo*p)/180);
@@ -516,7 +516,7 @@ void soma_vetor_simples(){
 void soma_vetor_complexo(){
     int n,i;
     double resposta,x,y,angulo;
-    printf("\npara voce ter vindo aqui, voce vai somar varios vetores de diferentes angulos, obs os angulos usam o x como refeencia\n");
+    printf("\npara voce ter vindo aqui, voce vai somar varios vetores de diferentes angulos, obs: os angulos usam o x como refencia\n");
     printf("quantos vetores temos?\n");
     scanf(" %d",&n);
     double *vetores = (double*)malloc(n*sizeof(double));
@@ -538,7 +538,62 @@ void soma_vetor_complexo(){
     }
     resposta = sqrt(pow(y,2)+pow(x,2));//calcula o vetor
     angulo = (atan2(y,x)*180)/p;//calcula o angulo do vetor com arcotangente
-    printf("o resultado dessa soma e um devotr com o modulo %g e o angulo %g\n",resposta,angulo);
+    printf("o resultado dessa soma e um vetor com o modulo %g e o angulo %g\n",resposta,angulo);
     free(vetores);
     free(angulos);
+}
+
+void multiplicaçao_vetores(){
+    printf("multiplicacao de vetores, vamos la\n");
+    double s,p;
+    int lin,col,g;
+    double vetores[3][3];
+    double vetor_resultado[3];
+    double vetor_prin[3][3];
+    double vetor_secundario[3][3];
+
+    for (lin=0;lin<3;lin++)
+    {
+        for (col=0;col<3;col++)
+        {
+            if (lin==0)
+            {
+                vetores[lin][col]=1;
+            }else{
+                printf("diga o valor do vetor %d na posiçao %c\n",lin,(char)col+88);
+                scanf(" %lf", &vetores[lin][col]);
+            }
+        }
+        limpar_tela();
+    }
+    for(lin = 0; lin<3;lin++){//valor para a matrizp
+        for(col =  0; col < 3; col++){
+            g = (col+lin)%3;//gambiarra matematica que da coordenadas para que a criaçao dessas matrizes seja possivel
+            vetor_prin[col][lin]=vetores[lin][g];
+        }
+    }
+    for(lin = 0; lin<3;lin++){//valor para a matrizp
+        for(col =  0; col < 3; col++){
+            g = 2 - (col+lin)%3;//gambiarra matematica que da coordenadas para que a criaçao dessas matrizes seja possivel
+            vetor_secundario[col][lin]=vetores[lin][g];
+        }
+    }
+    for(lin = 0; lin<3;lin++)
+    {
+        p=1;
+        s=1;
+        for(col =  0; col < 3; col++)
+        {
+            p *=vetor_prin[lin][col];
+            s *= vetor_secundario[2-lin][col];
+        }
+        vetor_resultado[lin] = p-s;
+    }
+    limpar_tela();
+    printf("\no vetor e: ");
+    for (g=0;g<3;g++){
+        printf(" %lf %c ",vetor_resultado[g], (char)g+88);
+    }
+    printf("\n");
+
 }
