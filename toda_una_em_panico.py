@@ -82,6 +82,8 @@ while True:#aqui onde o user começa a ver
                 raiz quadrada=sqrt(x)
                 para cosseno = cos(x)
                 para tangente = tan(x)
+                arctan = atan(x)
+                arctan(x/y) = atan2(x,y)
                 log natural = log(x)
                 log de 10 = log10(x)
                 pi = p""")
