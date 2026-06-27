@@ -1,3 +1,4 @@
+//licença GNU
 /*    toda_una_em_panico | a calculadora para engenheiros novatos desesperados
 *    Copyright (C) 2026  
 *   Contact: nilson.m.b.abreu@gmail.com
@@ -14,6 +15,7 @@
 *
 *    You should have received a copy of the GNU General Public License
 *    along with this program.  If not, see <https://www.gnu.org/licenses/>*/
+
 
 SECTIONS
 {

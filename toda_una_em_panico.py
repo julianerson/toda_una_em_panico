@@ -1,19 +1,19 @@
-# licença GNU GPL v3
-# toda_una_em_panico | a calculadora para engenheiros novatos desesperados
-# Copyright (C) 2026 Nilson
-# Contato: nilson.m.b.abreu@gmail.com
-#
-# Este programa é software livre: você pode redistribuí-lo e/ou modificá-lo
-# sob os termos da GNU General Public License publicada pela Free Software Foundation,
-# na versão 3 da Licença, ou (a seu critério) qualquer versão posterior.
-#
-# Este programa é distribuído na esperança de que seja útil,
-# mas SEM NENHUMA GARANTIA; sem mesmo a garantia implícita de
-# COMERCIALIZAÇÃO ou ADEQUAÇÃO A UM PROPÓSITO PARTICULAR.
-# Veja a GNU General Public License para mais detalhes.
-#
-# Você deve ter recebido uma cópia da GNU General Public License
-# junto com este programa. Se não, veja <https://www.gnu.org/licenses/>
+#//licença GNU
+#/*    toda_una_em_panico | a calculadora para engenheiros novatos desesperados
+#*    Copyright (C) 2026  
+#*   Contact: nilson.m.b.abreu@gmail.com
+#*
+#*    This program is free software: you can redistribute it and/or modify
+#*    it under the terms of the GNU General Public License as published by
+#*    the Free Software Foundation, either version 3 of the License, or
+#*    (at your option) any later version.
+#*
+#*    This program is distributed in the hope that it will be useful,
+#*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#*    GNU General Public License for more details.
+#*    You should have received a copy of the GNU General Public License
+#*    along with this program.  If not, see <https://www.gnu.org/licenses/>*/
 
 import os
 from InquirerPy import inquirer
