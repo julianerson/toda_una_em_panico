@@ -72,4 +72,4 @@ if git.strip().lower() == "s":
 
     i = input("diga o nome da atualizacao:  ")
     subprocess.run(f"git commit -m '{i}'", shell=True)
-    subprocess.run("git push", shell=True)
+    subprocess.run("git push origin main", shell=True)
