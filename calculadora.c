@@ -29,30 +29,24 @@
 #include <time.h>
 #include <math.h>
 #include <float.h>
+#include "terminal.h"//manipula o terminal
 
 // Verifica se é Windows (32 ou 64 bits)
 #if defined(_WIN32) || defined(_WIN64)
     #define OS_NOME "Windows"
     #include <windows.h> // Biblioteca específica do Windows
-
+    #define SLEEP(ms) Sleep(ms)
 // Verifica se é Linux ou Unix
 #elif defined(__unix__) || defined(__unix) || defined(__linux__)
     #define OS_NOME "unixlike"
     #include <unistd.h>
+    #define SLEEP(ms) sleep(ms/1000)
 
 #else//caso nao soubermos o os
     #define OS_NOME "Desconhecido"
 #endif
 
 const double p = 3.141592653589793;//pi e constante em TODO O CODIGO, e e uma variavel externa
-
-void limpar_tela(){//funçao de limpeza
-    if(strcmp(OS_NOME,"Windows")==0){
-        system("cls");
-    }else if(strcmp(OS_NOME,"unixlike")==0){
-        system("clear");
-    }
-}
 
 void matrizes_multiplicadas(){
     limpar_tela();
@@ -208,7 +202,7 @@ void soma_matriz(){//isso aqui sao as somas de matrizes
     int fc,fl;//esses serao os valores que os users verao
     char oito[10];
     printf("soma ou subtracao?\n");
-    scanf(" %s",&oito);
+    scanf(" %9s", oito);
     printf("diga quantas linhas tem as matrizes\n");
     scanf(" %d",&l);
     printf("diga quantas colunas tem as matrizes\n");
@@ -280,13 +274,13 @@ void soma_matriz(){//isso aqui sao as somas de matrizes
 
 void somatorio(){//funçao somatorio
     limpar_tela();
-    char comando[20];
     double i = 0;//diz o i
 
-    printf("você quer somatorio ou produtorio\n");
-    scanf(" %s",&comando);
+    char *escolha[] = {"você quer somatorio ou produtorio?\n","somatorio", "produtorio",NULL};
+    SLEEP(1000);
+    char *comando = listao(escolha);
     limpar_tela();
-
+    printf("seu comando foi: %s",comando);
     printf("\ndiga o i\n");
     printf(">");
     scanf(" %lf", &i);
